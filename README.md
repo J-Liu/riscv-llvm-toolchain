@@ -33,6 +33,39 @@ you will get `riscv64-linux-musl` toochain, including `clang`, `lld`, `musl`, `c
 ### Re-build
 If you can re-build it, just remove the `$PROJ_ROOT/build-*` directory.
 
+### Download Sources by Hand
+If you wanna download the sources by yourself, the tree should looks like:
+
+```
+├── build-elf
+│   ├── clang
+│   ├── compiler-rt
+│   └── newlib
+├── build-musl
+│   ├── clang
+│   ├── compiler-rt
+│   ├── musl
+│   └── musl-headers
+├── patches
+│   └── newlib-4.2.0.20211231-C99-build.diff
+├── rv-musl.sh
+├── rv-newlib.sh
+├── src
+│   ├── linux-6.0.7
+│   ├── llvm-project
+│   ├── musl-1.2.3
+│   └── newlib-4.2.0.20211231
+├── stamps
+│   ├── newlib_src_patched
+│   ├── src_downloaded
+│   └── src_extracted
+└── tarballs
+    ├── linux-6.0.7.tar.xz
+    ├── musl-1.2.3.tar.gz
+    ├── newlib-4.2.0.20211231.tar.gz
+    └── qemu-7.1.0.tar.xz
+```
+
 ## Test
 When you built the bare-metal toolcahin, you can test it on **QEMU**.
 
