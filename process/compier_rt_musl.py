@@ -1,5 +1,5 @@
 from common.user_input import get_libc_type
-from conf import BUILD_COMPILER_RT_MUSL
+from conf.conf import BUILD_COMPILER_RT_MUSL
 from utils.record_step import compiler_rt_musl_built, \
     compiler_rt_musl_configured, compiler_rt_musl_installed, \
     is_compiler_rt_musl_built, is_compiler_rt_musl_configured, \

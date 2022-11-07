@@ -4,7 +4,7 @@ import stat
 from pathlib import Path
 
 from common.user_input import get_libc_type
-from conf import BUILD_CLANG, CLANG_TEMPLATE, MUSL_TRIPLE, \
+from conf.conf import BUILD_CLANG, CLANG_TEMPLATE, MUSL_TRIPLE, \
     NEWLIB_TRIPLE
 from utils.record_step import clang_built, clang_configured, \
     clang_installed, clang_post_configured_elf, clang_post_configured_musl, \
@@ -216,7 +216,7 @@ def process_clang():
 
 
 if __name__ == '__main__':
-    from environment import init_env
+    from conf.environment import init_env
 
     init_env()
     process_clang()

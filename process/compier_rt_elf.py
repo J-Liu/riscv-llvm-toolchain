@@ -1,5 +1,5 @@
 from common.user_input import get_libc_type
-from conf import BUILD_COMPILER_RT_NEWLIB
+from conf.conf import BUILD_COMPILER_RT_NEWLIB
 from utils.record_step import compiler_rt_elf_built, \
     compiler_rt_elf_configured, compiler_rt_elf_installed, \
     is_compiler_rt_elf_built, is_compiler_rt_elf_configured, \

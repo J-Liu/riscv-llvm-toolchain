@@ -1,4 +1,4 @@
-from conf import LINUX_TARBALL, MUSL_TARBALL, NEWLIB_TARBALL, \
+from conf.conf import LINUX_TARBALL, MUSL_TARBALL, NEWLIB_TARBALL, \
     SRC_LINUX, SRC_MUSL, SRC_NEWLIB
 from utils.record_step import is_linux_headers_extracted, \
     is_musl_extracted, is_newlib_extracted, linux_headers_extracted, \
@@ -58,7 +58,7 @@ def extract_tarballs():
 
 
 if __name__ == '__main__':
-    from environment import init_env
+    from conf.environment import init_env
 
     init_env()
     extract_tarballs()

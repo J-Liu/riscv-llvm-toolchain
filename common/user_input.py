@@ -2,7 +2,7 @@ import json
 
 from pathlib import Path
 
-from conf import TOP_PATH
+from conf.conf import TOP_PATH
 
 conf_path = TOP_PATH.joinpath('conf').with_suffix('.json')
 

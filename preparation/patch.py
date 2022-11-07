@@ -1,4 +1,4 @@
-from conf import PATCH_NEWLIB_C99, SRC_NEWLIB
+from conf.conf import PATCH_NEWLIB_C99, SRC_NEWLIB
 from utils.record_step import is_newlib_patched, newlib_patched
 from utils.run_shell import run_shell
 
@@ -25,7 +25,7 @@ def patch_srouces():
 
 
 if __name__ == '__main__':
-    from environment import init_env
+    from conf.environment import init_env
 
     init_env()
     patch_srouces()
