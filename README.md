@@ -29,7 +29,16 @@ Then, we can run it by
 python main.py
 ```
 
-It will ask you some simple question, when it got your choices, you may get a LLVM Toolchain with multi-libc.
+It will ask you some simple question like
+
+```
+(venv) ➜  riscv-llvm-toolchain git:(main) ✗ python main.py 
+[0:All(Default), 1:Newlib, 2:Musl]:
+[0:Release(Default), 1:Debug]:
+[Prefix:/home/user/riscv-clang(Default)]:
+```
+
+When it got your choices, you may get a LLVM Toolchain with multi-libc, and qemu.
 
 ### Re-build
 If you can re-build it, remove the `$PROJ_ROOT/build/$XXX` directory, and change the `config` `build` `install` options into `false` in the `step.json`.
