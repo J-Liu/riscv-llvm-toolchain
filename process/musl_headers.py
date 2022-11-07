@@ -1,5 +1,5 @@
+from common.user_input import get_libc_type
 from conf import BUILD_MUSL_HEADERS
-from user_input import get_libc_type
 from utils.record_step import is_musl_headers_configured, \
     is_musl_headers_installed, musl_headers_configured, \
     musl_headers_installed

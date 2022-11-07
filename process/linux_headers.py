@@ -1,5 +1,5 @@
+from common.user_input import get_libc_type
 from conf import SRC_LINUX
-from user_input import get_libc_type
 from utils.record_step import is_linux_headers_configured, \
     is_linux_headers_installed, linux_headers_configured, \
     linux_headers_installed

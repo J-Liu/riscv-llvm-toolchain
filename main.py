@@ -1,4 +1,5 @@
-from init_dir import init_dir
+from common.init_dir import init_dir
+from common.user_input import user_input
 from preparation.download import download_tarballs
 from preparation.git_clone import clone_code
 from preparation.extract import extract_tarballs
@@ -10,7 +11,6 @@ from process.linux_headers import process_linux_headers
 from process.musl_headers import process_musl_headers
 from process.musl import process_musl
 from process.newlib import process_newlib
-from user_input import user_input
 
 
 def main():

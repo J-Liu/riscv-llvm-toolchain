@@ -1,5 +1,5 @@
+from common.user_input import get_libc_type
 from conf import BUILD_NEWLIB
-from user_input import get_libc_type
 from utils.record_step import is_newlib_built, is_newlib_configured, \
     is_newlib_installed, newlib_built, newlib_configured, newlib_installed
 from utils.run_shell import run_shell

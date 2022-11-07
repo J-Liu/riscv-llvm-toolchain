@@ -1,5 +1,5 @@
+from common.user_input import get_libc_type
 from conf import BUILD_MUSL
-from user_input import get_libc_type
 from utils.record_step import is_musl_built, is_musl_configured, \
     is_musl_installed, musl_built, musl_configured, musl_installed
 from utils.run_shell import run_shell

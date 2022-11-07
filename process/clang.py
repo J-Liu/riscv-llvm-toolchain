@@ -3,9 +3,9 @@ import stat
 
 from pathlib import Path
 
+from common.user_input import get_libc_type
 from conf import BUILD_CLANG, CLANG_TEMPLATE, MUSL_TRIPLE, \
     NEWLIB_TRIPLE
-from user_input import get_libc_type
 from utils.record_step import clang_built, clang_configured, \
     clang_installed, clang_post_configured_elf, clang_post_configured_musl, \
     is_clang_built, is_clang_configured, is_clang_installed, \
