@@ -2,8 +2,10 @@ from pathlib import Path
 
 from git.repo import Repo
 
-from scripts.config import SRC_ROOT
-from scripts.record_step import store_key, load_key
+from scripts.config import LLVM_GIT_URL, LLVM_PROJ_NAME, SRC_ROOT
+from scripts.record_step import clang_cloned, compiler_rt_elf_cloned, \
+    compiler_rt_musl_cloned, is_clang_cloned, libcxx_cloned, libcxxabi_cloned, \
+    libunwind_cloned
 
 
 def git_clone(url, name):
@@ -20,12 +22,11 @@ def git_clone(url, name):
 
 
 def clone_code():
-    llvm_git_url = 'https://github.com/llvm/llvm-project.git'
-    llvm_name = 'llvm-project'
-    if not load_key('clang', 'git'):
-        git_clone(llvm_git_url, llvm_name)
-        store_key('clang', 'git', True)
-        store_key('compiler-rt', 'git', True)
-        store_key('libunwind', 'git', True)
-        store_key('libcxx', 'git', True)
-        store_key('libcxxabi', 'git', True)
+    if not is_clang_cloned():
+        git_clone(LLVM_GIT_URL, LLVM_PROJ_NAME)
+        clang_cloned()
+        compiler_rt_elf_cloned()
+        compiler_rt_musl_cloned()
+        libcxx_cloned()
+        libcxxabi_cloned()
+        libunwind_cloned()

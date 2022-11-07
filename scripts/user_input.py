@@ -78,3 +78,22 @@ def user_input():
 
     with conf_path.open('w', encoding='utf-8') as f:
         json.dump(obj, f, indent=2)
+
+
+def load_key(key):
+    with conf_path.open('r', encoding='utf-8') as f:
+        obj = json.load(f)
+        v = obj.get(key)
+        return v
+
+
+def get_libc_type():
+    return load_key('libc')
+
+
+def get_build_type():
+    return load_key('build')
+
+
+def get_prefix():
+    return load_key('prefix')
