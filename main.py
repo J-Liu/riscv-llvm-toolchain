@@ -1,5 +1,6 @@
 from common.init_dir import init_dir
 from common.user_input import user_input
+from conf.environment import init_env
 from preparation.download import download_tarballs
 from preparation.git_clone import clone_code
 from preparation.extract import extract_tarballs
@@ -18,6 +19,7 @@ def main():
     init_dir()
     download_tarballs()
     clone_code()
+    init_env()
     extract_tarballs()
     patch_srouces()
 
