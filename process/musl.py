@@ -17,8 +17,10 @@ pre_config_args = \
 
 config_args = \
     '''
+    --target=$MUSL_TRIPLE \
     --host=$MUSL_TRIPLE \
     --prefix=$MUSL_SYSROOT \
+    --syslibdir=$MUSL_SYSROOT/lib \
     --disable-werror \
     --enable-shared
     '''
