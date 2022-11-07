@@ -31,7 +31,7 @@ config_cmd11 = 'export READELF_FOR_TARGET=llvm-readelf'
 config_cmd12 = 'export STRIP_FOR_TARGET=llvm-strip'
 config_cmd13 = 'export LIPO_FOR_TARGET=llvm-lipo'
 config_cmd14 = 'export DLLTOOL_FOR_TARGET=llvm-dlltool'
-config_cmd15 = '$SRC_NEWLIB/configure ' + config_args
+config_cmd15 = '$SRC_NEWLIB/configure \\' + config_args
 
 config_cmd = config_cmd1 + '&&' + config_cmd2 + '&&' + config_cmd3 \
              + '&&' + config_cmd4 + '&&' + config_cmd5 + '&&' + config_cmd6 \

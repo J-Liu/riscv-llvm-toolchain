@@ -79,7 +79,7 @@ newlib_link_cmd = link_cmd1 + ' && ' + newlib_link_cmd2 \
 def do_config():
     BUILD_CLANG.mkdir(parents=True, exist_ok=True)
     cmd1 = 'cd ' + BUILD_CLANG.as_posix()
-    cmd2 = 'cmake ' + config_args
+    cmd2 = 'cmake \\' + config_args
     cmd = cmd1 + ' && ' + cmd2
     ret = run_shell(cmd)
     return ret

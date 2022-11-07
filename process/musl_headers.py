@@ -19,7 +19,7 @@ config_args = \
 def do_config():
     BUILD_MUSL_HEADERS.mkdir(parents=True, exist_ok=True)
     cmd1 = 'cd ' + BUILD_MUSL_HEADERS.as_posix()
-    cmd2 = '$SRC_MUSL/configure ' + config_args
+    cmd2 = '$SRC_MUSL/configure \\' + config_args
     cmd = cmd1 + ' && ' + cmd2
     ret = run_shell(cmd)
     return ret
