@@ -1,6 +1,6 @@
 import json
 
-from conf import TOP_PATH
+from conf.conf import TOP_PATH
 
 step_path = TOP_PATH.joinpath('step').with_suffix('.json')
 
