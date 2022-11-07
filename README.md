@@ -9,94 +9,94 @@ On Ubuntu, executing the following command should suffice:
 
 `sudo apt-get install automake curl wget python3 libmpc-dev gawk build-essential bison flex texinfo gperf pkg-config libtool patchutils bc zlib1g-dev libexpat-dev`
 
+For we have `python3`, we can get a virtual environment, so we can install `virtualenv` by
+
+`pip install virtualenv` or `pip3 install virtualenv`
+
 ## Usage
-### Bare-metal Toolcahin
-Change the `CLANG_INSTALL` into your **PREFIX**, then run
+We should install our python virtual environment at the first time.
 
 ```
 cd $PROJ_ROOT
-bash riscv64-elf.sh
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-you will get `riscv64-elf` toochain, including `clang`, `lld`, `newlib`, `compiler-rt`.
-
-### Linux Musl Toolcahin
-Change the `CLANG_INSTALL` into your **PREFIX**, then run
+Then, we can run it by
 
 ```
-cd $PROJ_ROOT
-bash riscv64-linux-musl.sh
+python main.py
 ```
 
-you will get `riscv64-linux-musl` toochain, including `clang`, `lld`, `musl`, `compiler-rt`.
+It will ask you some simple question, when it got your choices, you may get a LLVM Toolchain with multi-libc.
 
 ### Re-build
-If you can re-build it, just remove the `$PROJ_ROOT/build-*` directory.
+If you can re-build it, remove the `$PROJ_ROOT/build/$XXX` directory, and change the `config` `build` `install` options into `false` in the `step.json`.
+
+If you wanna change the version of software or something, I put all the configuration in `$PROJ_ROOT/conf/conf.py` and `$PROJ_ROOT/conf/environment.py`.
+
 
 ### Download Sources by Hand
 If you wanna download the sources by yourself, the tree should looks like:
 
 ```
-├── build-elf
+├── build
 │   ├── clang
-│   ├── compiler-rt
-│   └── newlib
-├── build-musl
-│   ├── clang
-│   ├── compiler-rt
+│   ├── compiler-rt-elf
+│   ├── compiler-rt-musl
 │   ├── musl
-│   └── musl-headers
+│   ├── musl-headers
+│   └── newlib
+├── common
+├── conf
+├── conf.json
+├── main.py
 ├── patches
-│   └── newlib-4.2.0.20211231-C99-build.diff
-├── rv-musl.sh
-├── rv-newlib.sh
+├── preparation
+├── process
+├── README.md
+├── requirements.txt
+├── resources
 ├── src
 │   ├── linux-6.0.7
 │   ├── llvm-project
 │   ├── musl-1.2.3
 │   └── newlib-4.2.0.20211231
-├── stamps
-│   ├── newlib_src_patched
-│   ├── src_downloaded
-│   └── src_extracted
-└── tarballs
-    ├── linux-6.0.7.tar.xz
-    ├── musl-1.2.3.tar.gz
-    ├── newlib-4.2.0.20211231.tar.gz
-    └── qemu-7.1.0.tar.xz
+├── step.json
+├── tarballs
+│   ├── linux-6.0.7.tar.xz
+│   ├── musl-1.2.3.tar.gz
+│   ├── newlib-4.2.0.20211231.tar.gz
+│   └── qemu-7.1.0.tar.xz
+├── utils
+└── venv
 ```
+
+Don't forget change the `download` options into `true` in the `step.json`.
 
 ## Test
-When you built the bare-metal toolcahin, you can test it on **QEMU**.
+You can test it on **QEMU**.
 
+This is an example of elf toochain.
 ```
-$CLANG_INSTALL/bin/clang --sysroot=$NEWLIB_SYSROOT -fuse-ld=lld hello.c
-qemu-riscv64 -L $NEWLIB_SYSROOT -cpu rv64 a.out
-```
-
-It will be OK.
-
-If you wanna test the linux-musl toolcahin, you can try
-
-```
-$CLANG_INSTALL/bin/clang --sysroot=$MUSL_SYSROOT -fuse-ld=lld hello.c
-qemu-riscv64 -L $MUSL_SYSROOT -cpu rv64 a.out
+$PREFIX/bin/clang --target=$NEWLIB_TRIPLE --sysroot=$PREFIX/$NEWLIB_TRIPLE -fuse-ld=lld hello.c
+qemu-riscv64 -L $PREFIX/$NEWLIB_TRIPLE -cpu rv64 a.out
 ```
 
-It still can compile, but qemu will get a error msg like:
-
-`qemu-riscv64: Could not open '/lib/ld-musl-riscv64.so.1': No such file or directory`
+This is another example of linux-musl toochain.
+```
+$PREFIX/bin/clang --target=$MUSL_TRIPLE --sysroot=$PREFIX/sysroot -fuse-ld=lld hello.c
+qemu-riscv64 -L $PREFIX/sysroot -cpu rv64 a.out
+```
 
 ## Ask for HELP
 * cross compile libunwind/libcxx/libcxxabi.
-* Fix musl loader problem.
-* Better stamp support.
 * MinGW cross compile.
 * glibc toolchain.
 * Anyone please summit a C99 build patch to newlib?  I'm tired with mailinglist.
-* Multi-libc toolchain.
 
-For I know almost nothing about coding, if you're good at shell-script/Makefile/CMakeLIsts.txt, don't be shy, contact me.
+For I know almost nothing about coding, if you're good at it, don't be shy, contact me.
 I'm open to new ideas.  And, BTW. Chinese is OK to me if you are Chinese, for I know over 2000 Chinese characters than 20 English letters.
 
 I don't use Windows, if you wanna ship a toolchian to Win users, maybe you can help on MinGW cross cimpiling.
