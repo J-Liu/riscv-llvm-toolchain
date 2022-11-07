@@ -18,6 +18,7 @@ def extract_linux():
     if not is_linux_headers_extracted():
         if SRC_LINUX.exists():
             print(SRC_LINUX.as_posix() + ' is already exists')
+            linux_headers_extracted()
             return
         ret = extract_tarball(LINUX_TARBALL)
         if ret != 0:
@@ -30,6 +31,8 @@ def extract_musl():
     if not is_musl_extracted():
         if SRC_MUSL.exists():
             print(SRC_MUSL.as_posix() + ' is already exists')
+            musl_extracted()
+            musl_headers_extracted()
             return
         ret = extract_tarball(MUSL_TARBALL)
         if ret != 0:
@@ -43,6 +46,7 @@ def extract_newlib():
     if not is_newlib_extracted():
         if SRC_NEWLIB.exists():
             print(SRC_NEWLIB.as_posix() + ' is already exists')
+            newlib_extracted()
             return
         ret = extract_tarball(NEWLIB_TARBALL)
         if ret != 0:
