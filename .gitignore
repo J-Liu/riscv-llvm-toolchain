@@ -164,4 +164,4 @@ build-elf/
 src/
 stamps/
 tarballs/
-*.json
+conf.json
