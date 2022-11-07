@@ -1,6 +1,6 @@
 # RISC-V LLVM Compiler Toolchain
 
-'Pure' LLVM Toolchian with Multi-libc for RISC-V.
+'Pure' LLVM Toolchian with Multi-libc for RISC-V with QEMU.
 
 ## Prerequisites
 It is well tested on Ubuntu-20.04 AMD64, I'm not sure about the other platfoms.
@@ -102,6 +102,6 @@ I'm open to new ideas.  And, BTW. Chinese is OK to me if you are Chinese, for I 
 I don't use Windows, if you wanna ship a toolchian to Win users, maybe you can help on MinGW cross compiling.
 
 ### Code Style
-If you wanna work together, Change your `PyCharm`'s' `Hard wrap at` and `Visual guides` into `80` columns.  You can find them in `Preferences->Editor->Code Style`, let `PyCharm` check your code so you can fix all the warnings, and `PyCharm` can format your code perfectly.  It is FREE, maybe you can try it.
+If you wanna work together, Change your `PyCharm`'s `Hard wrap at` and `Visual guides` into `80` columns.  You can find them in `Preferences->Editor->Code Style`, let `PyCharm` check your code so you can fix all the warnings, and `PyCharm` can format your code perfectly.  It is FREE, maybe you can try it.
 
 No abbreviation, keep UTF-8, no windows stuff, no Java style please.
