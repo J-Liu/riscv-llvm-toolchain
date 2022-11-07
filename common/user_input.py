@@ -47,7 +47,7 @@ def user_input():
 
     toolchain_name = 'riscv' + libc + '-clang'
     default_install_path = TOP_PATH.parent.joinpath(toolchain_name)
-    default_install_path_str = '[prefix:' + BoldColor.BOLD_UNDERLINE + \
+    default_install_path_str = '[Prefix:' + BoldColor.BOLD_UNDERLINE + \
                                default_install_path.as_posix() + BoldColor.END + \
                                '(Default)]:'
     install_path = input(default_install_path_str)
