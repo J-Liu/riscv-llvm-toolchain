@@ -48,6 +48,7 @@ config_cmd = config_cmd1 + '&&' + config_cmd2 + '&&' + config_cmd3 \
 
 
 def do_config():
+    BUILD_COMPILER_RT_NEWLIB.mkdir(parents=True, exist_ok=True)
     cmd1 = 'cd ' + BUILD_COMPILER_RT_NEWLIB.as_posix()
     cmd2 = config_cmd
     cmd = cmd1 + ' && ' + cmd2

@@ -33,6 +33,7 @@ config_cmd = config_cmd1 + '&&' + config_cmd2 + '&&' + config_cmd3 \
 
 
 def do_config():
+    BUILD_MUSL.mkdir(parents=True, exist_ok=True)
     cmd1 = 'cd ' + BUILD_MUSL.as_posix()
     cmd2 = config_cmd
     cmd = cmd1 + ' && ' + cmd2
