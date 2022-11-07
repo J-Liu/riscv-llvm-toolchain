@@ -3,14 +3,14 @@ import stat
 
 from pathlib import Path
 
-from scripts.conf import BUILD_CLANG, CLANG_TEMPLATE, MUSL_TRIPLE, \
+from conf import BUILD_CLANG, CLANG_TEMPLATE, MUSL_TRIPLE, \
     NEWLIB_TRIPLE
-from scripts.record_step import clang_built, clang_configured, \
+from user_input import get_libc_type
+from utils.record_step import clang_built, clang_configured, \
     clang_installed, clang_post_configured_elf, clang_post_configured_musl, \
     is_clang_built, is_clang_configured, is_clang_installed, \
     is_clang_post_configured_elf, is_clang_post_configured_musl
-from scripts.run_shell import run_shell
-from scripts.user_input import get_libc_type
+from utils.run_shell import run_shell
 
 config_args = \
     '''
@@ -216,7 +216,7 @@ def process_clang():
 
 
 if __name__ == '__main__':
-    from scripts.environment import init_env
+    from environment import init_env
 
     init_env()
     process_clang()

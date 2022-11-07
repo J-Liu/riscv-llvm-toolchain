@@ -1,9 +1,8 @@
-from scripts.conf import BUILD_NEWLIB
-from scripts.patch import patch_newlib
-from scripts.record_step import is_newlib_built, is_newlib_configured, \
+from conf import BUILD_NEWLIB
+from user_input import get_libc_type
+from utils.record_step import is_newlib_built, is_newlib_configured, \
     is_newlib_installed, newlib_built, newlib_configured, newlib_installed
-from scripts.run_shell import run_shell
-from scripts.user_input import get_libc_type
+from utils.run_shell import run_shell
 
 config_args = \
     '''
@@ -96,7 +95,6 @@ def install_newlib():
 def process_newlib():
     libc = get_libc_type()
     if libc != '-linux-musl':
-        patch_newlib()
         config_newlib()
         build_newlib()
         install_newlib()

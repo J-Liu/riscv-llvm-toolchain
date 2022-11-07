@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from scripts.conf import BUILD_ROOT, SRC_ROOT, TARBALL_ROOT
+from conf import BUILD_ROOT, SRC_ROOT, TARBALL_ROOT
 
 
 def init_dir():

@@ -1,10 +1,10 @@
-from scripts.conf import BUILD_COMPILER_RT_MUSL
-from scripts.record_step import compiler_rt_musl_built, \
+from conf import BUILD_COMPILER_RT_MUSL
+from user_input import get_libc_type
+from utils.record_step import compiler_rt_musl_built, \
     compiler_rt_musl_configured, compiler_rt_musl_installed, \
     is_compiler_rt_musl_built, is_compiler_rt_musl_configured, \
     is_compiler_rt_musl_installed
-from scripts.run_shell import run_shell
-from scripts.user_input import get_libc_type
+from utils.run_shell import run_shell
 
 config_args = \
     '''

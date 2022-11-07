@@ -1,14 +1,16 @@
-from scripts.clang import process_clang
-from scripts.compier_rt_elf import process_compiler_rt_elf
-from scripts.compier_rt_musl import process_compiler_rt_musl
-from scripts.download import download_tarballs
-from scripts.git_clone import clone_code
-from scripts.init_dir import init_dir
-from scripts.linux_headers import process_linux_headers
-from scripts.musl_headers import process_musl_headers
-from scripts.musl import process_musl
-from scripts.newlib import process_newlib
-from scripts.user_input import user_input
+from init_dir import init_dir
+from preparation.download import download_tarballs
+from preparation.git_clone import clone_code
+from preparation.extract import extract_tarballs
+from preparation.patch import patch_srouces
+from process.clang import process_clang
+from process.compier_rt_elf import process_compiler_rt_elf
+from process.compier_rt_musl import process_compiler_rt_musl
+from process.linux_headers import process_linux_headers
+from process.musl_headers import process_musl_headers
+from process.musl import process_musl
+from process.newlib import process_newlib
+from user_input import user_input
 
 
 def main():
@@ -16,6 +18,8 @@ def main():
     init_dir()
     download_tarballs()
     clone_code()
+    extract_tarballs()
+    patch_srouces()
 
     process_clang()
     process_linux_headers()

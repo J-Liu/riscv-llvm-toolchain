@@ -1,10 +1,10 @@
-from scripts.conf import BUILD_COMPILER_RT_NEWLIB
-from scripts.record_step import compiler_rt_elf_built, \
+from conf import BUILD_COMPILER_RT_NEWLIB
+from user_input import get_libc_type
+from utils.record_step import compiler_rt_elf_built, \
     compiler_rt_elf_configured, compiler_rt_elf_installed, \
     is_compiler_rt_elf_built, is_compiler_rt_elf_configured, \
     is_compiler_rt_elf_installed
-from scripts.run_shell import run_shell
-from scripts.user_input import get_libc_type
+from utils.run_shell import run_shell
 
 config_args = \
     '''

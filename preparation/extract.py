@@ -1,9 +1,9 @@
-from scripts.conf import LINUX_TARBALL, MUSL_TARBALL, NEWLIB_TARBALL, \
+from conf import LINUX_TARBALL, MUSL_TARBALL, NEWLIB_TARBALL, \
     SRC_LINUX, SRC_MUSL, SRC_NEWLIB
-from scripts.record_step import is_linux_headers_extracted, \
+from utils.record_step import is_linux_headers_extracted, \
     is_musl_extracted, is_newlib_extracted, linux_headers_extracted, \
     musl_extracted, musl_headers_extracted, newlib_extracted
-from scripts.run_shell import run_shell
+from utils.run_shell import run_shell
 
 
 def extract_tarball(tarball):
@@ -58,7 +58,7 @@ def extract_tarballs():
 
 
 if __name__ == '__main__':
-    from scripts.environment import init_env
+    from environment import init_env
 
     init_env()
     extract_tarballs()
