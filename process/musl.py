@@ -12,7 +12,7 @@ pre_config_args = \
     CXXFLAGS="$MUSL_CXXFLAGS -g -O2" \
     ASFLAGS=$MUSL_CFLAGS \
     CROSS_COMPILE=$MUSL_TRIPLE- \
-    LIBCC=$COMPILER_RT_INSTALL/lib/linux/libclang_rt.builtins-riscv64.a \
+    LIBCC=$COMPILER_RT_INSTALL/lib/linux/libclang_rt.builtins-riscv64.a
     '''
 
 config_args = \
