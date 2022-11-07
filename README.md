@@ -1,6 +1,6 @@
 # RISC-V LLVM Compiler Toolchain
 
-'Pure' LLVM Toolchian with Multi-libc for RISC-V with QEMU.
+'Pure' Multi-libc LLVM Toolchain for RISC-V with QEMU.
 
 ## Prerequisites
 It is well tested on Ubuntu-20.04 AMD64, I'm not sure about the other platfoms.
