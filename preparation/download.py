@@ -3,10 +3,11 @@ import requests
 from pathlib import Path
 
 from conf.conf import LINUX_TARBALL, LINUX_URL, MUSL_TARBALL, MUSL_URL, \
-    NEWLIB_TARBALL, NEWLIB_URL, TARBALL_ROOT
+    NEWLIB_TARBALL, NEWLIB_URL, QEMU_TARBALL, QEMU_URL, TARBALL_ROOT
 from utils.record_step import is_linux_headers_downloaded, \
-    is_musl_downloaded, is_newlib_downloaded, linux_headers_downloaded, \
-    musl_downloaded, musl_headers_downloaded, newlib_downloaded
+    is_musl_downloaded, is_newlib_downloaded, is_qemu_downloaded, \
+    linux_headers_downloaded, musl_downloaded, musl_headers_downloaded, \
+    newlib_downloaded, qemu_downloaded
 
 
 def download_tarball(url, name):
@@ -32,6 +33,9 @@ def download_tarballs():
         download_tarball(MUSL_URL, MUSL_TARBALL)
         musl_headers_downloaded()
         musl_downloaded()
+    if not is_qemu_downloaded():
+        download_tarball(QEMU_URL, QEMU_TARBALL)
+        qemu_downloaded()
 
 
 if __name__ == '__main__':

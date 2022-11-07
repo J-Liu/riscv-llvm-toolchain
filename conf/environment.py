@@ -3,10 +3,10 @@ import os
 from common.user_input import get_build_type, get_prefix
 from conf.conf import BUILD_CLANG, BUILD_COMPILER_RT_MUSL, \
     BUILD_COMPILER_RT_NEWLIB, BUILD_LIBCXX, BUILD_LIBCXXABI, BUILD_LIBUNWIND, \
-    BUILD_MUSL, BUILD_MUSL_HEADERS, BUILD_NEWLIB, BUILD_ROOT, MUSL_TRIPLE, \
-    NEWLIB_TRIPLE, SRC_COMPILER_RT, SRC_LIBCXX, SRC_LIBCXXABI, SRC_LIBUNWIND, \
-    SRC_LINUX, SRC_LLVM, SRC_MUSL, SRC_NEWLIB, SRC_ROOT, TARBALL_ROOT, \
-    TARGETS_TO_BUILD, TOOLS_TO_BUILD
+    BUILD_MUSL, BUILD_MUSL_HEADERS, BUILD_NEWLIB, BUILD_QEMU, BUILD_ROOT, \
+    MUSL_TRIPLE, NEWLIB_TRIPLE, SRC_COMPILER_RT, SRC_LIBCXX, SRC_LIBCXXABI, \
+    SRC_LIBUNWIND, SRC_LINUX, SRC_LLVM, SRC_MUSL, SRC_NEWLIB, SRC_QEMU, \
+    SRC_ROOT, TARBALL_ROOT, TARGETS_TO_BUILD, TOOLS_TO_BUILD
 
 
 def init_env():
@@ -47,6 +47,7 @@ def init_env():
     os.environ['SRC_LIBUNWIND'] = SRC_LIBUNWIND.as_posix()
     os.environ['SRC_LIBCXX'] = SRC_LIBCXX.as_posix()
     os.environ['SRC_LIBCXXABI'] = SRC_LIBCXXABI.as_posix()
+    os.environ['SRC_QEMU'] = SRC_QEMU.as_posix()
 
     os.environ['BUILD_MUSL'] = BUILD_MUSL.as_posix()
     os.environ['BUILD_MUSL_HEADERS'] = BUILD_MUSL_HEADERS.as_posix()
@@ -57,3 +58,4 @@ def init_env():
     os.environ['BUILD_LIBUNWIND'] = BUILD_LIBUNWIND.as_posix()
     os.environ['BUILD_LIBCXX'] = BUILD_LIBCXX.as_posix()
     os.environ['BUILD_LIBCXXABI'] = BUILD_LIBCXXABI.as_posix()
+    os.environ['BUILD_QEMU'] = BUILD_QEMU.as_posix()

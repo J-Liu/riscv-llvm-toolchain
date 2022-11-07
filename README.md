@@ -7,7 +7,7 @@ It is well tested on Ubuntu-20.04 AMD64, I'm not sure about the other platfoms.
 
 On Ubuntu, executing the following command should suffice:
 
-`sudo apt-get install automake curl wget python3 libmpc-dev gawk build-essential bison flex texinfo gperf pkg-config libtool patchutils bc zlib1g-dev libexpat-dev`
+`sudo apt-get install automake curl wget python3 libmpc-dev gawk build-essential bison flex texinfo gperf pkg-config libtool patchutils bc zlib1g-dev libexpat-dev ninja-build`
 
 For we have `python3`, we can get a virtual environment, so we can install `virtualenv` by
 
@@ -81,13 +81,13 @@ You can test it on **QEMU**.
 This is an example of elf toochain.
 ```
 $PREFIX/bin/clang --target=$NEWLIB_TRIPLE --sysroot=$PREFIX/$NEWLIB_TRIPLE -fuse-ld=lld hello.c
-qemu-riscv64 -L $PREFIX/$NEWLIB_TRIPLE -cpu rv64 a.out
+$PREFIX/bin/qemu-riscv64 -L $PREFIX/$NEWLIB_TRIPLE -cpu rv64 a.out
 ```
 
 This is another example of linux-musl toochain.
 ```
 $PREFIX/bin/clang --target=$MUSL_TRIPLE --sysroot=$PREFIX/sysroot -fuse-ld=lld hello.c
-qemu-riscv64 -L $PREFIX/sysroot -cpu rv64 a.out
+$PREFIX/bin/qemu-riscv64 -L $PREFIX/sysroot -cpu rv64 a.out
 ```
 
 ## Ask for HELP

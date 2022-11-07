@@ -71,6 +71,13 @@ def reset_steps():
         'build': False,
         'install': False
     }
+    qemu = {
+        'download': False,
+        'extract': False,
+        'config': False,
+        'build': False,
+        'install': False
+    }
 
     progress = {
         'clang': clang,
@@ -82,7 +89,8 @@ def reset_steps():
         'musl': musl,
         'libunwind': libunwind,
         'libcxx': libcxx,
-        'libcxxabi': libcxxabi
+        'libcxxabi': libcxxabi,
+        'qemu': qemu
     }
 
     with step_path.open('w', encoding='utf-8') as f:
@@ -292,6 +300,26 @@ def is_libcxxabi_installed():
     return is_done('libcxxabi', 'install')
 
 
+def is_qemu_downloaded():
+    return is_done('qemu', 'download')
+
+
+def is_qemu_extracted():
+    return is_done('qemu', 'extract')
+
+
+def is_qemu_configured():
+    return is_done('qemu', 'config')
+
+
+def is_qemu_built():
+    return is_done('qemu', 'build')
+
+
+def is_qemu_installed():
+    return is_done('qemu', 'install')
+
+
 def done(key, subkey):
     store_key(key, subkey, True)
 
@@ -474,6 +502,26 @@ def libcxxabi_built():
 
 def libcxxabi_installed():
     return done('libcxxabi', 'install')
+
+
+def qemu_downloaded():
+    return done('qemu', 'download')
+
+
+def qemu_extracted():
+    return done('qemu', 'extract')
+
+
+def qemu_configured():
+    return done('qemu', 'config')
+
+
+def qemu_built():
+    return done('qemu', 'build')
+
+
+def qemu_installed():
+    return done('qemu', 'install')
 
 
 if __name__ == '__main__':

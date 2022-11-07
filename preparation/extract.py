@@ -1,8 +1,9 @@
 from conf.conf import LINUX_TARBALL, MUSL_TARBALL, NEWLIB_TARBALL, \
-    SRC_LINUX, SRC_MUSL, SRC_NEWLIB
+    QEMU_TARBALL, SRC_LINUX, SRC_MUSL, SRC_NEWLIB, SRC_QEMU
 from utils.record_step import is_linux_headers_extracted, \
-    is_musl_extracted, is_newlib_extracted, linux_headers_extracted, \
-    musl_extracted, musl_headers_extracted, newlib_extracted
+    is_musl_extracted, is_newlib_extracted, is_qemu_extracted, \
+    linux_headers_extracted, musl_extracted, musl_headers_extracted, \
+    newlib_extracted, qemu_extracted
 from utils.run_shell import run_shell
 
 
@@ -55,10 +56,24 @@ def extract_newlib():
         newlib_extracted()
 
 
+def extract_qemu():
+    if not is_qemu_extracted():
+        if SRC_QEMU.exists():
+            print(SRC_QEMU.as_posix() + ' is already exists')
+            qemu_extracted()
+            return
+        ret = extract_tarball(QEMU_TARBALL)
+        if ret != 0:
+            print(QEMU_TARBALL + ' is broken')
+            exit(1)
+        qemu_extracted()
+
+
 def extract_tarballs():
     extract_linux()
     extract_musl()
     extract_newlib()
+    extract_qemu()
 
 
 if __name__ == '__main__':
