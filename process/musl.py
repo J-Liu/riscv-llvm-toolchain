@@ -28,8 +28,8 @@ config_cmd2 = 'export LLVM_RESOURCEDIR=lib/clang/$LLVM_VERSION'
 config_cmd3 = 'export COMPILER_RT_INSTALL=$CLANG_PREFIX/$LLVM_RESOURCEDIR'
 config_cmd4 = pre_config_args + ' $SRC_MUSL/configure \\' + config_args
 
-config_cmd = config_cmd1 + '&&' + config_cmd2 + '&&' + config_cmd3 \
-             + '&&' + config_cmd4
+config_cmd = config_cmd1 + ' && ' + config_cmd2 + ' && ' + config_cmd3 \
+             + ' && ' + config_cmd4
 
 
 def do_config():
