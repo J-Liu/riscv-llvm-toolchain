@@ -22,8 +22,8 @@ class BoldColor:
 
 
 def user_input():
-    libc_type = input(BoldColor.BOLD_UNDERLINE + '[0:all' + BoldColor.END +
-                      '(Default), 1:newlib, 2:musl]:')
+    libc_type = input(BoldColor.BOLD_UNDERLINE + '[0:All' + BoldColor.END +
+                      '(Default), 1:Newlib, 2:Musl]:')
     if libc_type == '0' or libc_type.isspace() or len(libc_type) == 0:
         libc = ''
     elif libc_type == '1':
@@ -63,7 +63,7 @@ def user_input():
         print(
             BoldColor.RED + 'PREFIX is already exist, please type another one' +
             BoldColor.END)
-        # exit(1)
+        exit(1)
     except Exception as e:
         print(BoldColor.YELLOW + repr(e) + BoldColor.END)
         print(BoldColor.RED + 'Make sure your PREFIX is right or accessible' +
