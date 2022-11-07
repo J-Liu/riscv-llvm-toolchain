@@ -60,10 +60,14 @@ def user_input():
     try:
         path.mkdir(parents=True, exist_ok=False)
     except FileExistsError:
-        print(
-            BoldColor.RED + 'PREFIX is already exist, please type another one' +
-            BoldColor.END)
-        exit(1)
+        print(BoldColor.RED + 'PREFIX is already exist, '
+                              'do you want to continue?' + BoldColor.END)
+        ret = input(BoldColor.BOLD_UNDERLINE + '[0:YES' + BoldColor.END +
+                    '(Default), 1:NO]:')
+        if ret == '0' or libc_type.isspace() or len(libc_type) == 0:
+            pass
+        else:
+            exit(1)
     except Exception as e:
         print(BoldColor.YELLOW + repr(e) + BoldColor.END)
         print(BoldColor.RED + 'Make sure your PREFIX is right or accessible' +
