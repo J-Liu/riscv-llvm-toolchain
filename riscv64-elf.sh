@@ -208,7 +208,7 @@ cd $BUILD_ROOT
 
 mkdir -p $BUILD_COMPILER_RT
 cd $BUILD_COMPILER_RT
-export LLVM_VERSION=`$CLANG_INSTALL/bin/clang -dumpversion`
+export LLVM_VERSION=`clang -dumpversion`
 export LLVM_RESOURCEDIR=lib/clang/$LLVM_VERSION
 export COMPILER_RT_INSTALL=$CLANG_INSTALL/$LLVM_RESOURCEDIR
 cmake \
