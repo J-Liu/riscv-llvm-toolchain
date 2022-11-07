@@ -7,7 +7,7 @@ from utils.run_shell import run_shell
 
 config_args = \
     '''
-    --host=$TARGET_TRIPLE \
+    --host=$MUSL_TRIPLE \
     --prefix=$MUSL_SYSROOT/usr \
     --enable-shared \
     --with-headers=$MUSL_SYSROOT/usr/include \
