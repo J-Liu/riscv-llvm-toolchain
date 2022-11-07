@@ -1,6 +1,6 @@
 import json
 
-from scripts.config import TOP_PATH
+from scripts.conf import TOP_PATH
 
 step_path = TOP_PATH.joinpath('step').with_suffix('.json')
 

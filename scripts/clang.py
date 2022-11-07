@@ -3,7 +3,7 @@ import stat
 
 from pathlib import Path
 
-from scripts.config import BUILD_CLANG, CLANG_TEMPLATE, MUSL_TRIPLE, \
+from scripts.conf import BUILD_CLANG, CLANG_TEMPLATE, MUSL_TRIPLE, \
     NEWLIB_TRIPLE
 from scripts.record_step import clang_built, clang_configured, \
     clang_installed, clang_post_configured_elf, clang_post_configured_musl, \

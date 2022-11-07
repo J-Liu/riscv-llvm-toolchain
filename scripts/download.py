@@ -2,7 +2,7 @@ import requests
 
 from pathlib import Path
 
-from scripts.config import LINUX_TARBALL, LINUX_URL, MUSL_TARBALL, MUSL_URL, \
+from scripts.conf import LINUX_TARBALL, LINUX_URL, MUSL_TARBALL, MUSL_URL, \
     NEWLIB_TARBALL, NEWLIB_URL, TARBALL_ROOT
 from scripts.record_step import is_linux_headers_downloaded, \
     is_musl_downloaded, is_newlib_downloaded, linux_headers_downloaded, \

@@ -1,4 +1,4 @@
-from scripts.config import LINUX_TARBALL, MUSL_TARBALL, NEWLIB_TARBALL, \
+from scripts.conf import LINUX_TARBALL, MUSL_TARBALL, NEWLIB_TARBALL, \
     SRC_LINUX, SRC_MUSL, SRC_NEWLIB
 from scripts.record_step import is_linux_headers_extracted, \
     is_musl_extracted, is_newlib_extracted, linux_headers_extracted, \

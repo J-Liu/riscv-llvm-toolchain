@@ -1,4 +1,4 @@
-from scripts.config import PATCH_NEWLIB_C99, SRC_NEWLIB
+from scripts.conf import PATCH_NEWLIB_C99, SRC_NEWLIB
 from scripts.record_step import is_newlib_patched, newlib_patched
 from scripts.run_shell import run_shell
 

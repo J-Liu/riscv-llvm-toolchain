@@ -1,4 +1,4 @@
-from scripts.config import BUILD_NEWLIB
+from scripts.conf import BUILD_NEWLIB
 from scripts.patch import patch_newlib
 from scripts.record_step import is_newlib_built, is_newlib_configured, \
     is_newlib_installed, newlib_built, newlib_configured, newlib_installed

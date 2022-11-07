@@ -1,4 +1,4 @@
-from scripts.config import BUILD_COMPILER_RT_NEWLIB
+from scripts.conf import BUILD_COMPILER_RT_NEWLIB
 from scripts.record_step import compiler_rt_elf_built, \
     compiler_rt_elf_configured, compiler_rt_elf_installed, \
     is_compiler_rt_elf_built, is_compiler_rt_elf_configured, \

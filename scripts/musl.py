@@ -1,4 +1,4 @@
-from scripts.config import BUILD_MUSL
+from scripts.conf import BUILD_MUSL
 from scripts.record_step import is_musl_built, is_musl_configured, \
     is_musl_installed, musl_built, musl_configured, musl_installed
 from scripts.run_shell import run_shell

@@ -1,4 +1,4 @@
-from scripts.config import BUILD_MUSL_HEADERS
+from scripts.conf import BUILD_MUSL_HEADERS
 from scripts.record_step import is_musl_headers_configured, \
     is_musl_headers_installed, musl_headers_configured, \
     musl_headers_installed

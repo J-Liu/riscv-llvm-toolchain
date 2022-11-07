@@ -2,7 +2,7 @@ from pathlib import Path
 
 from git.repo import Repo
 
-from scripts.config import LLVM_GIT_URL, LLVM_PROJ_NAME, SRC_ROOT
+from scripts.conf import LLVM_GIT_URL, LLVM_PROJ_NAME, SRC_ROOT
 from scripts.record_step import clang_cloned, compiler_rt_elf_cloned, \
     compiler_rt_musl_cloned, is_clang_cloned, libcxx_cloned, libcxxabi_cloned, \
     libunwind_cloned

@@ -1,4 +1,4 @@
-from scripts.config import BUILD_COMPILER_RT_MUSL
+from scripts.conf import BUILD_COMPILER_RT_MUSL
 from scripts.record_step import compiler_rt_musl_built, \
     compiler_rt_musl_configured, compiler_rt_musl_installed, \
     is_compiler_rt_musl_built, is_compiler_rt_musl_configured, \
