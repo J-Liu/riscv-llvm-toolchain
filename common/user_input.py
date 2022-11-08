@@ -64,7 +64,7 @@ def user_input():
                               'do you want to continue?' + BoldColor.END)
         ret = input(BoldColor.BOLD_UNDERLINE + '[0:YES' + BoldColor.END +
                     '(Default), 1:NO]:')
-        if ret == '0' or libc_type.isspace() or len(libc_type) == 0:
+        if ret == '0' or ret.isspace() or len(ret) == 0:
             pass
         else:
             exit(1)
