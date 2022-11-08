@@ -12,15 +12,31 @@ Components:
 * QEMU
 
 ## Prerequisites
-It is well tested on Ubuntu-20.04 AMD64, I'm not sure about the other platfoms.
+### Ubuntu
 
 On Ubuntu, executing the following command should suffice:
 
 `sudo apt-get install automake curl wget python3 libmpc-dev gawk build-essential bison flex texinfo gperf pkg-config libtool patchutils bc zlib1g-dev libexpat-dev ninja-build`
 
-For we have `python3`, we can get a virtual environment, so we can install `virtualenv` by
 
-`pip install virtualenv` or `pip3 install virtualenv`
+### macOS
+**Make sure your filesystem is 'APFS Case Sensitive'**
+
+Install [***homebrew***](https://brew.sh) first, and then executing the following command:
+
+```
+brew install cmake ninja python libtool pkg-config glib zlib
+```      
+
+
+### Python Environment
+For we got ***python3***, we can get a virtual environment, so we can install ***virtualenv*** by
+
+`pip install virtualenv`
+
+or
+
+`pip3 install virtualenv`
 
 ## Usage
 We should install our python virtual environment at the first time.
@@ -50,9 +66,9 @@ It will ask you some simple question like
 When it got your choices, you may get a LLVM Toolchain with multi-libc, and qemu.
 
 ### Re-build
-If you can re-build it, remove the `$PROJ_ROOT/build/$XXX` directory, and change the `config` `build` `install` options into `false` in the `step.json`.
+If you can re-build it, remove the **$PROJ_ROOT/build/$XXX** directory, and change the **config** **build** **install** options into ***false*** in the **step.json**.
 
-If you wanna change the version of software or something, I put all the configuration in `$PROJ_ROOT/conf/conf.py` and `$PROJ_ROOT/conf/environment.py`.
+If you wanna change the version of software or something, I put all the configuration in **$PROJ_ROOT/conf/conf.py** and **$PROJ_ROOT/conf/environment.py**.
 
 
 ### Download Sources by Hand
@@ -93,7 +109,7 @@ If you wanna download the sources by yourself, the tree should looks like:
 └── venv
 ```
 
-Don't forget change the `download` options into `true` in the `step.json`.
+Don't forget change the **download** options into ***true*** in the **step.json**.
 
 ## Test
 You can test it on **QEMU**.
@@ -122,6 +138,6 @@ I'm open to new ideas.  And, BTW. Chinese is OK to me if you are Chinese, for I 
 I don't use Windows, if you wanna ship a toolchian to Win users, maybe you can help on MinGW cross compiling.
 
 ### Code Style
-If you wanna work together, Change your `PyCharm`'s `Hard wrap at` and `Visual guides` into `80` columns.  You can find them in `Preferences->Editor->Code Style`, let `PyCharm` check your code so you can fix all the warnings, and `PyCharm` can format your code perfectly.  It is FREE, maybe you can try it.
+If you wanna work together, Change your **PyCharm**'s **Hard wrap at** and **Visual guides** into ***80 columns***.  You can find them at **Preferences->Editor->Code Style**, let **PyCharm** check your code so you can fix all the warnings, and **PyCharm** can format your code perfectly.  It is FREE, maybe you can try it.
 
 No abbreviation, keep UTF-8, no windows stuff, no Java style please.
