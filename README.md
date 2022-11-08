@@ -1,6 +1,15 @@
 # RISC-V LLVM Compiler Toolchain
 
-'Pure' Multi-libc LLVM Toolchain for RISC-V with QEMU.
+A Multi-libc LLVM Toolchain for RISC-V with QEMU.
+
+Components:
+* Clang
+* LLVM
+* lld
+* compiler-rt
+* Newlib
+* Musl-libc
+* QEMU
 
 ## Prerequisites
 It is well tested on Ubuntu-20.04 AMD64, I'm not sure about the other platfoms.
@@ -56,7 +65,8 @@ If you wanna download the sources by yourself, the tree should looks like:
 │   ├── compiler-rt-musl
 │   ├── musl
 │   ├── musl-headers
-│   └── newlib
+│   ├── newlib
+│   └── qemu
 ├── common
 ├── conf
 ├── conf.json
@@ -72,6 +82,7 @@ If you wanna download the sources by yourself, the tree should looks like:
 │   ├── llvm-project
 │   ├── musl-1.2.3
 │   └── newlib-4.2.0.20211231
+│   ├── qemu-7.1.0
 ├── step.json
 ├── tarballs
 │   ├── linux-6.0.7.tar.xz
