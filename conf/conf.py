@@ -40,13 +40,12 @@ NEWLIB_TRIPLE = 'riscv64-unknown-elf'
 MUSL_TRIPLE = 'riscv64-unknown-linux-musl'
 TOOLS_TO_BUILD = 'clang;lld'
 TARGETS_TO_BUILD = 'RISCV'
+RUNTIMES_TO_BUILD = 'libcxx;libcxxabi;libunwind'
 
 LLVM_PROJ_ROOT = SRC_ROOT.joinpath(LLVM_PROJ_NAME)
 SRC_LLVM = LLVM_PROJ_ROOT.joinpath('llvm')
 SRC_COMPILER_RT = LLVM_PROJ_ROOT.joinpath('compiler-rt')
-SRC_LIBUNWIND = LLVM_PROJ_ROOT.joinpath('libunwind')
-SRC_LIBCXX = LLVM_PROJ_ROOT.joinpath('libcxx')
-SRC_LIBCXXABI = LLVM_PROJ_ROOT.joinpath('libcxxabi')
+SRC_RUNTIMES = LLVM_PROJ_ROOT.joinpath('runtimes')
 
 SRC_LINUX = SRC_ROOT.joinpath('linux-' + LINUX_VER)
 SRC_MUSL = SRC_ROOT.joinpath('musl-' + MUSL_VER)
@@ -59,9 +58,8 @@ BUILD_MUSL_HEADERS = BUILD_ROOT.joinpath('musl-headers')
 BUILD_NEWLIB = BUILD_ROOT.joinpath('newlib')
 BUILD_COMPILER_RT_MUSL = BUILD_ROOT.joinpath('compiler-rt-musl')
 BUILD_COMPILER_RT_NEWLIB = BUILD_ROOT.joinpath('compiler-rt-elf')
-BUILD_LIBUNWIND = BUILD_ROOT.joinpath('libunwind')
-BUILD_LIBCXX = BUILD_ROOT.joinpath('libcxx')
-BUILD_LIBCXXABI = BUILD_ROOT.joinpath('libcxxabi')
+BUILD_RUNTIMES_ELF = BUILD_ROOT.joinpath('runtimes-elf')
+BUILD_RUNTIMES_MUSL = BUILD_ROOT.joinpath('runtimes-musl')
 BUILD_QEMU = BUILD_ROOT.joinpath('qemu')
 
 CLANG_TEMPLATE = RESOURCES_ROOT.joinpath('target-clang-template')

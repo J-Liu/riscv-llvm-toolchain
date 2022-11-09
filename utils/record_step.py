@@ -35,13 +35,11 @@ def reset_steps():
         'install': False
     }
     compiler_rt_elf = {
-        'git': False,
         'config': False,
         'build': False,
         'install': False
     }
     compiler_rt_musl = {
-        'git': False,
         'config': False,
         'build': False,
         'install': False
@@ -53,20 +51,12 @@ def reset_steps():
         'build': False,
         'install': False
     }
-    libunwind = {
-        'git': False,
+    runtimes_elf = {
         'config': False,
         'build': False,
         'install': False
     }
-    libcxx = {
-        'git': False,
-        'config': False,
-        'build': False,
-        'install': False
-    }
-    libcxxabi = {
-        'git': False,
+    runtimes_musl = {
         'config': False,
         'build': False,
         'install': False
@@ -87,9 +77,8 @@ def reset_steps():
         'compiler-rt-elf': compiler_rt_elf,
         'compiler-rt-musl': compiler_rt_musl,
         'musl': musl,
-        'libunwind': libunwind,
-        'libcxx': libcxx,
-        'libcxxabi': libcxxabi,
+        'runtimes-elf': runtimes_elf,
+        'runtimes-musl': runtimes_musl,
         'qemu': qemu
     }
 
@@ -200,10 +189,6 @@ def is_musl_headers_installed():
     return is_done('musl-headers', 'install')
 
 
-def is_compiler_rt_elf_cloned():
-    return is_done('compiler-rt-elf', 'git')
-
-
 def is_compiler_rt_elf_configured():
     return is_done('compiler-rt-elf', 'config')
 
@@ -214,10 +199,6 @@ def is_compiler_rt_elf_built():
 
 def is_compiler_rt_elf_installed():
     return is_done('compiler-rt-elf', 'install')
-
-
-def is_compiler_rt_musl_cloned():
-    return is_done('compiler-rt-musl', 'git')
 
 
 def is_compiler_rt_musl_configured():
@@ -252,52 +233,28 @@ def is_musl_installed():
     return is_done('musl', 'install')
 
 
-def is_libunwind_cloned():
-    return is_done('libunwind', 'git')
+def is_runtimes_elf_configured():
+    return is_done('runtimes-elf', 'config')
 
 
-def is_libunwind_configured():
-    return is_done('libunwind', 'config')
+def is_runtimes_elf_built():
+    return is_done('runtimes-elf', 'build')
 
 
-def is_libunwind_built():
-    return is_done('libunwind', 'build')
+def is_runtimes_elf_installed():
+    return is_done('runtimes-elf', 'install')
 
 
-def is_libunwind_installed():
-    return is_done('libunwind', 'install')
+def is_runtimes_musl_configured():
+    return is_done('runtimes-musl', 'config')
 
 
-def is_libcxx_cloned():
-    return is_done('libcxx', 'git')
+def is_runtimes_musl_built():
+    return is_done('runtimes-musl', 'build')
 
 
-def is_libcxx_configured():
-    return is_done('libcxx', 'config')
-
-
-def is_libcxx_built():
-    return is_done('libcxx', 'build')
-
-
-def is_libcxx_installed():
-    return is_done('libcxx', 'install')
-
-
-def is_libcxxabi_cloned():
-    return is_done('libcxxabi', 'git')
-
-
-def is_libcxxabi_configured():
-    return is_done('libcxxabi', 'config')
-
-
-def is_libcxxabi_built():
-    return is_done('libcxxabi', 'build')
-
-
-def is_libcxxabi_installed():
-    return is_done('libcxxabi', 'install')
+def is_runtimes_musl_installed():
+    return is_done('runtimes-musl', 'install')
 
 
 def is_qemu_downloaded():
@@ -404,8 +361,6 @@ def musl_headers_installed():
     return done('musl-headers', 'install')
 
 
-def compiler_rt_elf_cloned():
-    return done('compiler-rt-elf', 'git')
 
 
 def compiler_rt_elf_configured():
@@ -420,8 +375,6 @@ def compiler_rt_elf_installed():
     return done('compiler-rt-elf', 'install')
 
 
-def compiler_rt_musl_cloned():
-    return done('compiler-rt-musl', 'git')
 
 
 def compiler_rt_musl_configured():
@@ -456,52 +409,28 @@ def musl_installed():
     return done('musl', 'install')
 
 
-def libunwind_cloned():
-    return done('libunwind', 'git')
+def runtimes_elf_configured():
+    return done('runtimes-elf', 'config')
 
 
-def libunwind_configured():
-    return done('libunwind', 'config')
+def runtimes_elf_built():
+    return done('runtimes-elf', 'build')
 
 
-def libunwind_built():
-    return done('libunwind', 'build')
+def runtimes_elf_installed():
+    return done('runtimes-elf', 'install')
 
 
-def libunwind_installed():
-    return done('libunwind', 'install')
+def runtimes_musl_configured():
+    return done('runtimes-musl', 'config')
 
 
-def libcxx_cloned():
-    return done('libcxx', 'git')
+def runtimes_musl_built():
+    return done('runtimes-musl', 'build')
 
 
-def libcxx_configured():
-    return done('libcxx', 'config')
-
-
-def libcxx_built():
-    return done('libcxx', 'build')
-
-
-def libcxx_installed():
-    return done('libcxx', 'install')
-
-
-def libcxxabi_cloned():
-    return done('libcxxabi', 'git')
-
-
-def libcxxabi_configured():
-    return done('libcxxabi', 'config')
-
-
-def libcxxabi_built():
-    return done('libcxxabi', 'build')
-
-
-def libcxxabi_installed():
-    return done('libcxxabi', 'install')
+def runtimes_musl_installed():
+    return done('runtimes-musl', 'install')
 
 
 def qemu_downloaded():

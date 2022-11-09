@@ -12,6 +12,8 @@ from process.linux_headers import process_linux_headers
 from process.musl_headers import process_musl_headers
 from process.musl import process_musl
 from process.newlib import process_newlib
+from process.runtimes_elf import process_runtimes_elf
+from process.runtimes_musl import process_runtimes_musl
 from process.qemu import process_qemu
 
 
@@ -31,6 +33,8 @@ def main():
     process_compiler_rt_elf()
     process_compiler_rt_musl()
     process_musl()
+    process_runtimes_elf()
+    process_runtimes_musl()
     process_qemu()
 
 

@@ -1,9 +1,7 @@
 from git.repo import Repo
 
 from conf.conf import LLVM_GIT_URL, LLVM_PROJ_NAME, SRC_ROOT
-from utils.record_step import clang_cloned, compiler_rt_elf_cloned, \
-    compiler_rt_musl_cloned, is_clang_cloned, libcxx_cloned, libcxxabi_cloned, \
-    libunwind_cloned
+from utils.record_step import clang_cloned, is_clang_cloned
 
 
 def git_clone(url, name):
@@ -23,8 +21,3 @@ def clone_code():
     if not is_clang_cloned():
         git_clone(LLVM_GIT_URL, LLVM_PROJ_NAME)
         clang_cloned()
-        compiler_rt_elf_cloned()
-        compiler_rt_musl_cloned()
-        libcxx_cloned()
-        libcxxabi_cloned()
-        libunwind_cloned()
