@@ -29,14 +29,6 @@ def init_env():
     os.environ['NEWLIB_FLAGS'] = \
         '--target=${NEWLIB_TRIPLE} --sysroot=${NEWLIB_SYSROOT}'
     os.environ['CLANG_LDFLAGS'] = '-fuse-ld=lld'
-    os.environ['MUSL_RUNTIMES_FLAGS'] = \
-        '--target=${MUSL_TRIPLE}' + \
-        ' -ffunction-sections -fdata-sections -fno-ident' + \
-        ' --sysroot ${MUSL_SYSROOT}'
-    os.environ['NEWLIB_RUNTIMES_FLAGS'] = \
-        '--target=${NEWLIB_TRIPLE}' + \
-        ' -ffunction-sections -fdata-sections -fno-ident' + \
-        ' --sysroot ${NEWLIB_SYSROOT}'
 
     os.environ['TOOLS_TO_BUILD'] = TOOLS_TO_BUILD
     os.environ['TARGETS_TO_BUILD'] = TARGETS_TO_BUILD
