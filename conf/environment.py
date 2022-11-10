@@ -30,6 +30,10 @@ def init_env():
     os.environ['MUSL_CXXFLAGS'] = os.environ.get('MUSL_CFLAGS')
     os.environ['NEWLIB_CXXFLAGS'] = os.environ.get('NEWLIB_CFLAGS')
     os.environ['CLANG_LDFLAGS'] = '-fuse-ld=lld'
+    os.environ['MUSL_RUNTIMES_CFLAGS'] = '--target=$MUSL_TRIPLE'
+    os.environ['NEWLIB_RUNTIMES_CFLAGS'] = '--target=$NEWLIB_TRIPLE'
+    os.environ['MUSL_RUNTIMES_CXXFLAGS'] = os.environ.get('MUSL_RUNTIMES_CFLAGS')
+    os.environ['NEWLIB_RUNTIMES_CXXFLAGS'] = os.environ.get('NEWLIB_RUNTIMES_CFLAGS')
 
     os.environ['TOOLS_TO_BUILD'] = TOOLS_TO_BUILD
     os.environ['TARGETS_TO_BUILD'] = TARGETS_TO_BUILD
