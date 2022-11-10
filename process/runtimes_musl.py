@@ -64,8 +64,7 @@ def do_config():
         'export MUSL_RUNTIMES_FLAGS="--target=${MUSL_TRIPLE}' + \
         ' -ffunction-sections -fdata-sections -fno-ident' + \
         ' --sysroot ${MUSL_SYSROOT}"'
-    cmd2 = config_cmd
-    cmd = cmd1 + ' && ' + cmd2
+    cmd = cmd1 + '&&' + pre_config_cmd + ' && ' + config_cmd
     ret = run_shell(cmd)
     return ret
 

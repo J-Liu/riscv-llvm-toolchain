@@ -64,8 +64,7 @@ def do_config():
         'export NEWLIB_RUNTIMES_FLAGS="--target=${NEWLIB_TRIPLE}' + \
         ' -ffunction-sections -fdata-sections -fno-ident' + \
         ' --sysroot ${NEWLIB_SYSROOT}"'
-    cmd2 = config_cmd
-    cmd = cmd1 + ' && ' + pre_config_cmd + ' && ' + cmd2
+    cmd = cmd1 + ' && ' + pre_config_cmd + ' && ' + config_cmd
     ret = run_shell(cmd)
     return ret
 
