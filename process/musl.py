@@ -8,9 +8,9 @@ pre_config_args = \
     '''
     CC=$MUSL_TRIPLE-clang \
     CXX=$MUSL_TRIPLE-clang++ \
-    CFLAGS="$MUSL_CFLAGS -g -O2" \
-    CXXFLAGS="$MUSL_CXXFLAGS -g -O2" \
-    ASFLAGS=$MUSL_CFLAGS \
+    CFLAGS="$MUSL_FLAGS -g -O2" \
+    CXXFLAGS="$MUSL_FLAGS -g -O2" \
+    ASFLAGS=$MUSL_FLAGS \
     CROSS_COMPILE=$MUSL_TRIPLE- \
     LIBCC=$COMPILER_RT_INSTALL/lib/linux/libclang_rt.builtins-riscv64.a
     '''
