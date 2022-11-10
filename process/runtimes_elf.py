@@ -7,6 +7,7 @@ from utils.run_shell import run_shell
 
 config_args = \
     '''
+    -G Ninja \
     -DCMAKE_AR=${CLANG_PREFIX}/bin/llvm-ar \
     -DCMAKE_ASM_FLAGS=${NEWLIB_RUNTIMES_FLAGS} \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
