@@ -60,8 +60,12 @@ config_cmd = 'cmake \\' + config_args
 def do_config():
     BUILD_RUNTIMES_ELF.mkdir(parents=True, exist_ok=True)
     cmd1 = 'cd ' + BUILD_RUNTIMES_ELF.as_posix()
+    pre_config_cmd = \
+        'export NEWLIB_RUNTIMES_FLAGS="--target=${NEWLIB_TRIPLE}' + \
+        ' -ffunction-sections -fdata-sections -fno-ident' + \
+        ' --sysroot ${NEWLIB_SYSROOT}"'
     cmd2 = config_cmd
-    cmd = cmd1 + ' && ' + cmd2
+    cmd = cmd1 + ' && ' + pre_config_cmd + ' && ' + cmd2
     ret = run_shell(cmd)
     return ret
 

@@ -60,6 +60,10 @@ config_cmd = 'cmake \\' + config_args
 def do_config():
     BUILD_RUNTIMES_MUSL.mkdir(parents=True, exist_ok=True)
     cmd1 = 'cd ' + BUILD_RUNTIMES_MUSL.as_posix()
+    pre_config_cmd = \
+        'export MUSL_RUNTIMES_FLAGS="--target=${MUSL_TRIPLE}' + \
+        ' -ffunction-sections -fdata-sections -fno-ident' + \
+        ' --sysroot ${MUSL_SYSROOT}"'
     cmd2 = config_cmd
     cmd = cmd1 + ' && ' + cmd2
     ret = run_shell(cmd)
