@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set_custom_env() {
   export CLANG_PREFIX=<PREFIX>
@@ -30,13 +30,15 @@ set_env() {
   export RUNTIMES_TO_BUILD="libcxx;libcxxabi;libunwind"
   export TARGETS_TO_BUILD="RISCV"
 
-  if [[ `uname` == "Darwin" ]] {
+  if [ `uname` == "Darwin" ]
+  then
     export QEMU_TARGET="riscv64-softmmu"
-  } elif [[ `uname` == "Linux" ]] {
+  elif [ `uname` == "Linux" ]
+  then
     export QEMU_TARGET="riscv64-softmmu,riscv64-linux-user"
-  } else {
+  else
     export QEMU_TARGET="riscv64-softmmu"
-  }
+  fi
 
   export MUSL_FLAGS="--target=${MUSL_TRIPLE} --sysroot=${MUSL_SYSROOT}"
   export NEWLIB_FLAGS="--target=${NEWLIB_TRIPLE} --sysroot=${NEWLIB_SYSROOT}"
@@ -101,84 +103,99 @@ set_env() {
 }
 
 makedir() {
-  if [[ -d ${BUILD_ROOT} ]] {
+  if [ -d ${BUILD_ROOT} ]
+  then
     echo -e "I: ${BUILD_ROOT} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_ROOT}
-  }
+  fi
 
-  if [[ -d ${TARBALL_ROOT} ]] {
+  if [ -d ${TARBALL_ROOT} ]
+  then
     echo -e "I: ${TARBALL_ROOT} already exist"
-  } else {
+  else
     mkdir -p ${TARBALL_ROOT}
-  }
+  fi
 }
 
 download() {
   cd ${TARBALL_ROOT}
-  if [[ -f ${MUSL_TARBALL} ]] {
+  if [ -f ${MUSL_TARBALL} ]
+  then
     echo -e "I: ${MUSL_TARBALL} already downloaded"
-  } else {
+  else
+    echo "Downloading ${MUSL_URL}"
     curl -O ${MUSL_URL}
-  }
+  fi
 
-  if [[ -f ${NEWLIB_TARBALL} ]] {
+  if [ -f ${NEWLIB_TARBALL} ]
+  then
     echo -e "I: ${NEWLIB_TARBALL} already downloaded"
-  } else {
+  else
+    echo "Downloading ${NEWLIBL_URL}"
     curl -O ${NEWLIB_URL}
-  }
+  fi
 
-  if [[ -f ${QEMU_TARBALL} ]] {
+  if [ -f ${QEMU_TARBALL} ]
+  then
     echo -e "I: ${QEMU_TARBALL} already downloaded"
-  } else {
+  else
+    echo "Downloading ${QEMU_URL}"
     curl -O ${QEMU_URL}
-  }
+  fi
 
-  if [[ -e ${LLVM_PROJ_ROOT} ]] {
+  if [ -e ${LLVM_PROJ_ROOT} ]
+  then
     echo -e "I: ${LLVM_PROJ_ROOT} already downloaded"
-  } else {
+  else
     cd ${SRC_ROOT}
+    echo "Downloading ${LLVM_GIT_URL}"
     git clone ${LLVM_GIT_URL}
-  }
+  fi
 }
 
 unpack() {
   cd ${SRC_ROOT}
-  if [[ -d ${SRC_MUSL} ]] {
+  if [ -d ${SRC_MUSL} ]
+  then
     echo -e "I: ${SRC_MUSL} already exist"
-  } else {
+  else
     tar vxf ${TARBALL_ROOT}/${MUSL_TARBALL}
-  }
+  fi
 
-  if [[ -d ${SRC_NEWLIB} ]] {
+  if [ -d ${SRC_NEWLIB} ]
+  then
     echo -e "I: ${SRC_NEWLIB} already exist"
-  } else {
+  else
     tar vxf ${TARBALL_ROOT}/${NEWLIB_TARBALL}
-  }
+  fi
 
-  if [[ -d ${SRC_QEMU} ]] {
+  if [ -d ${SRC_QEMU} ]
+  then
     echo -e "I: ${SRC_QEMU} already exist"
-  } else {
+  else
     tar vxf ${TARBALL_ROOT}/${QEMU_TARBALL}
-  }
+  fi
 }
 
 patch_src() {
-  if [[ -e ${NEWLIB_PATCH_FLAG} ]] {
+  if [ -e ${NEWLIB_PATCH_FLAG} ]
+  then
     echo -e "I: ${SRC_NEWLIB} already patched"
-  } else {
+  else
     cd ${SRC_NEWLIB}
     patch -p1 < ${NEWLIB_PATCH}
     touch ${NEWLIB_PATCH_FLAG}
-  }
+  fi
 }
 
 process_clang() {
-  if [[ -d ${BUILD_CLANG} ]] {
+  if [ -d ${BUILD_CLANG} ]
+  then
     echo -e "I: ${BUILD_CLANG} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_CLANG}
-  }
+  fi
   cd ${BUILD_CLANG}
   cmake \
   -G Ninja \
@@ -211,9 +228,9 @@ post_process_clang_musl() {
   ln -s lld ${MUSL_TRIPLE}-ld
   ln -s lld ${MUSL_TRIPLE}-ld.lld
   ln -s lld ${MUSL_TRIPLE}-ld64.lld
-  for i (ar nm objcopy objdump ranlib strip) {
-    ln -s llvm-$i ${MUSL_TRIPLE}-$i
-  }
+  for i in ar nm objcopy objdump ranlib strip;do
+    ln -s llvm-$i ${MUSL_TRIPLE}$i
+  done
 }
 
 post_process_clang_newlib() {
@@ -228,9 +245,9 @@ post_process_clang_newlib() {
   ln -s lld ${NEWLIB_TRIPLE}-ld
   ln -s lld ${NEWLIB_TRIPLE}-ld.lld
   ln -s lld ${NEWLIB_TRIPLE}-ld64.lld
-  for i (ar nm objcopy objdump ranlib strip) {
-    ln -s llvm-$i ${NEWLIB_TRIPLE}-$i
-  }
+  for i in ar nm objcopy objdump ranlib strip;do
+    ln -s llvm-$i ${NEWLIB_TRIPLE}$i
+  done
 }
 
 process_linux_header() {
@@ -240,11 +257,12 @@ process_linux_header() {
 }
 
 process_musl_header() {
-  if [[ -d ${BUILD_MUSL_HEADER} ]] {
+  if [ -d ${BUILD_MUSL_HEADER} ]
+  then
     echo -e "I: ${BUILD_MUSL_HEADER} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_MUSL_HEADER}
-  }
+  fi
   cd ${BUILD_MUSL_HEADER}
   $SRC_MUSL/configure \
   --host=${MUSL_TRIPLE} \
@@ -257,11 +275,12 @@ process_musl_header() {
 }
 
 process_newlib () {
-  if [[ -d ${BUILD_NEWLIB} ]] {
+  if [ -d ${BUILD_NEWLIB} ]
+  then
     echo -e "I: ${BUILD_NEWLIB} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_NEWLIB}
-  }
+  fi
   cd ${BUILD_NEWLIB}
   export CFLAGS_FOR_TARGET=" -Wno-int-conversion -g -gdwarf-3 -gstrict-dwarf -O2 -ffunction-sections -fdata-sections "
   export CC_FOR_TARGET=${NEWLIB_TRIPLE}-clang
@@ -297,11 +316,12 @@ set_compiler_rt_prefix() {
 }
 
 process_compiler_rt_musl() {
-  if [[ -d ${BUILD_COMPILER_RT_MUSL} ]] {
+  if [ -d ${BUILD_COMPILER_RT_MUSL} ]
+  then
     echo -e "I: ${BUILD_COMPILER_RT_MUSL} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_COMPILER_RT_MUSL}
-  }
+  fi
   cd ${BUILD_COMPILER_RT_MUSL}
   set_compiler_rt_prefix
   cmake \
@@ -345,11 +365,12 @@ process_compiler_rt_musl() {
 }
 
 process_compiler_rt_newlib() {
-  if [[ -d ${BUILD_COMPILER_RT_NEWLIB} ]] {
+  if [ -d ${BUILD_COMPILER_RT_NEWLIB} ]
+  then
     echo -e "I: ${BUILD_COMPILER_RT_NEWLIB} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_COMPILER_RT_NEWLIB}
-  }
+  fi
   cd ${BUILD_COMPILER_RT_NEWLIB}
   set_compiler_rt_prefix
   cmake \
@@ -393,11 +414,12 @@ process_compiler_rt_newlib() {
 }
 
 process_musl() {
-  if [[ -d ${BUILD_MUSL} ]] {
+  if [ -d ${BUILD_MUSL} ]
+  then
     echo -e "I: ${BUILD_MUSL} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_MUSL}
-  }
+  fi
   cd ${BUILD_MUSL}
   set_compiler_rt_prefix
   CC=clang \
@@ -419,11 +441,12 @@ process_musl() {
 }
 
 process_runtimes_musl() {
-  if [[ -d ${BUILD_RUNTIMES_MUSL} ]] {
+  if [ -d ${BUILD_RUNTIMES_MUSL} ]
+  then
     echo -e "I: ${BUILD_RUNTIMES_MUSL} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_RUNTIMES_MUSL}
-  }
+  fi
   cd ${BUILD_RUNTIMES_MUSL}
   cmake \
   -G Ninja \
@@ -481,11 +504,12 @@ process_runtimes_musl() {
 }
 
 process_runtimes_newlib() {
-  if [[ -d ${BUILD_RUNTIMES_NEWLIB} ]] {
+  if [ -d ${BUILD_RUNTIMES_NEWLIB} ]
+  then
     echo -e "I: ${BUILD_RUNTIMES_NEWLIB} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_RUNTIMES_NEWLIB}
-  }
+  fi
   cd ${BUILD_RUNTIMES_NEWLIB}
   cmake \
   -G Ninja \
@@ -543,11 +567,12 @@ process_runtimes_newlib() {
 }
 
 process_qemu() {
-  if [[ -d ${BUILD_QEMU} ]] {
+  if [ -d ${BUILD_QEMU} ]
+  then
     echo -e "I: ${BUILD_QEMU} already exist"
-  } else {
+  else
     mkdir -p ${BUILD_QEMU}
-  }
+  fi
   cd ${BUILD_QEMU}
   ${SRC_QEMU}/configure \
   --prefix=${CLANG_PREFIX} \
@@ -565,23 +590,25 @@ patch_src
 
 process_clang
 
-
-if [[ ${WITH_MUSL} == "ON" ]] {
+if [ ${WITH_MUSL} == "ON" ]
+then
   post_process_clang_musl
   process_linux_header
   process_musl_header
   process_compiler_rt_musl
   process_musl
   process_runtimes_musl
-}
+fi
 
-if [[ ${WITH_NEWLIB} == "ON" ]] {
+if [ ${WITH_NEWLIB} == "ON" ]
+then
   post_process_clang_newlib
   process_newlib
   process_compiler_rt_newlib
 #  process_runtimes_newlib
-}
+fi
 
-if [[ ${WITH_QEMU} == "ON" ]] {
+if [ ${WITH_QEMU} == "ON" ]
+then
   process_qemu
-}
+fi

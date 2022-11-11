@@ -1,8 +1,8 @@
 # RISC-V LLVM Compiler Toolchain
 
-A Multi-libc LLVM Toolchain for RISC-V with QEMU.
+**A Multi-libc LLVM Toolchain for RISC-V with QEMU.**
 
-Components:
+**Components:**
 * Clang/LLVM
 * lld
 * compiler-rt
@@ -11,9 +11,9 @@ Components:
 * libcxx/libcxxabi/libunwind(partly, ask for help)
 * QEMU
 
-TODO/Status/Ask For Help:
-* libcxx/libcxxabi/libunwind against newlib cross build need to be done.
-* libcxx/libcxxabi/libunwind against musl have been built without `locale`,
+**TODO/Status/Ask For Help:**
+* **libcxx/libcxxabi/libunwind** against **newlib** cross build need to be done.
+* **libcxx/libcxxabi/libunwind** against **musl** have been built without `locale`,
   we DO need `locale` to use `<iostream>`.
 
 ## Prerequisites
@@ -35,8 +35,6 @@ brew install cmake ninja python libtool pkg-config glib zlib
 
 
 ## Usage
-**IT IS A ZSH SCRIPT, INSTALL ZSH FISRT.**
-
 Change the **PREFIX** in **set_custom_env** first, and you can switch the other options.
 
 
@@ -53,7 +51,7 @@ set_custom_env() {
 Then, we can run it by
 
 ```
-zsh rv64.sh
+bash rv64.sh
 ```
 
 
@@ -112,8 +110,10 @@ $PREFIX/bin/qemu-riscv64 -L $PREFIX/sysroot -cpu rv64 a.out
 * glibc toolchain.
 * Anyone please summit a C99 build patch to newlib?  I'm tired with mailinglist.
 
-It is my first time to write zsh, for I know almost nothing about coding,
-if you're good at **meson**, don't be shy, contact me.  I'm open to new ideas.
+It is my first time to write bash, for I know almost nothing about coding,
+if you're good at **meson**, please help.  This kind of task is better to be
+done by build system.
+
 And, BTW. Chinese is OK to me if you are Chinese, for I know over 2000 Chinese 
 characters than 20 English letters.
 
