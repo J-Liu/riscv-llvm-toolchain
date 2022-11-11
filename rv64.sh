@@ -35,7 +35,7 @@ set_env() {
   } elif [[ `uname` == "Linux" ]] {
     export QEMU_TARGET="riscv64-softmmu,riscv64-linux-user"
   } else {
-    export QEMU_TARGET="riscv64-softmmu--"
+    export QEMU_TARGET="riscv64-softmmu"
   }
 
   export MUSL_FLAGS="--target=${MUSL_TRIPLE} --sysroot=${MUSL_SYSROOT}"
