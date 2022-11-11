@@ -54,6 +54,13 @@ Then, we can run it by
 bash rv64.sh
 ```
 
+If the *bash script* failed, try *zsh script*.  Every single step is right,
+but it seem lead a wrong path sometimes.
+
+```
+zsh rv64-zsh.sh
+```
+
 
 ### Re-build
 If you can re-build it, remove the **$PROJ_ROOT/build/$XXX** directory.
