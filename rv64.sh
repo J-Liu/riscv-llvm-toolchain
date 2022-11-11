@@ -229,7 +229,7 @@ post_process_clang_musl() {
   ln -s lld ${MUSL_TRIPLE}-ld.lld
   ln -s lld ${MUSL_TRIPLE}-ld64.lld
   for i in ar nm objcopy objdump ranlib strip;do
-    ln -s llvm-$i ${MUSL_TRIPLE}$i
+    ln -s llvm-$i ${MUSL_TRIPLE}-$i
   done
 }
 
@@ -245,8 +245,8 @@ post_process_clang_newlib() {
   ln -s lld ${NEWLIB_TRIPLE}-ld
   ln -s lld ${NEWLIB_TRIPLE}-ld.lld
   ln -s lld ${NEWLIB_TRIPLE}-ld64.lld
-  for i in ar nm objcopy objdump ranlib strip;do
-    ln -s llvm-$i ${NEWLIB_TRIPLE}$i
+for i in ar nm objcopy objdump ranlib strip;do
+    ln -s llvm-$i ${NEWLIB_TRIPLE}-$i
   done
 }
 
