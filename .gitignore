@@ -159,9 +159,8 @@ cython_debug/
 # macOS
 .DS_Store
 
-build-musl/
-build-elf/
-src/
-stamps/
-tarballs/
-conf.json
+tarball/
+src/llvm-project
+src/newlib*
+src/musl*
+src/pico*
