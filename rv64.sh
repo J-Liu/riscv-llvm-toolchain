@@ -101,12 +101,6 @@ set_env() {
 }
 
 makedir() {
-  if [[ -d ${SRC_ROOT} ]] {
-    echo -e "I: ${SRC_ROOT} already exist"
-  } else {
-    mkdir -p ${SRC_ROOT}
-  }
-
   if [[ -d ${BUILD_ROOT} ]] {
     echo -e "I: ${BUILD_ROOT} already exist"
   } else {
