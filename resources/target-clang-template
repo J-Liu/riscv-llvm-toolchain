@@ -1,1 +1,0 @@
-PREFIX/bin/CLANG --target=TARGET --sysroot=SYSROOT -Wno-unused-command-line-argument "$@"
