@@ -119,12 +119,3 @@ characters than 20 English letters.
 
 I don't use Windows, if you wanna ship a toolchian to Win users,
 maybe you can help on MinGW cross compiling.
-
-### Code Style
-If you wanna work together, Change your **PyCharm**'s **Hard wrap at** and
-**Visual guides** into ***80 columns***.  You can find them at
-**Preferences->Editor->Code Style**, let **PyCharm** check your code so you
-can fix all the warnings, and **PyCharm** can format your code perfectly.
-It is FREE, maybe you can try it.
-
-No abbreviation, keep UTF-8, no windows stuff, no Java style please.
