@@ -164,3 +164,4 @@ src/llvm-project
 src/newlib*
 src/musl*
 src/pico*
+src/qemu*
