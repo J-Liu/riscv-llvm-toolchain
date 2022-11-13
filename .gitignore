@@ -152,6 +152,7 @@ cython_debug/
 
 # JetBrains
 .idea/
+.fleet/
 
 # VSCode
 .vscode/
