@@ -515,11 +515,11 @@ process_runtimes_newlib() {
   -DLIBUNWIND_ENABLE_THREADS=OFF \
   ${SRC_RUNTIMES}
   ninja cxx
- ninja cxxabi
- ninja unwind
- ninja install-cxx
- ninja install-cxxabi
- ninja install-unwind
+  ninja cxxabi
+  ninja unwind
+  ninja install-cxx
+  ninja install-cxxabi
+  ninja install-unwind
 }
 
 process_qemu() {
