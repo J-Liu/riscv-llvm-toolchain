@@ -511,16 +511,15 @@ process_runtimes_newlib() {
   -DLIBCXX_ENABLE_RTTI=OFF \
   -DLIBCXX_ENABLE_THREADS=OFF \
   -DLIBCXX_ENABLE_WIDE_CHARACTERS=ON \
-  -DLIBCXX_ENABLE_LOCALIZATION=OFF \
-  -DLIBCXX_EXTRA_SITE_DEFINES=_LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION \
+  -DLIBCXX_EXTRA_SITE_DEFINES=_LIBCPP_PROVIDES_DEFAULT_RUNE_TABLE \
   -DLIBUNWIND_ENABLE_THREADS=OFF \
   ${SRC_RUNTIMES}
   ninja cxx
-#  ninja cxxabi
-#  ninja unwind
-#  ninja install-cxx
-#  ninja install-cxxabi
-#  ninja install-unwind
+ ninja cxxabi
+ ninja unwind
+ ninja install-cxx
+ ninja install-cxxabi
+ ninja install-unwind
 }
 
 process_qemu() {
