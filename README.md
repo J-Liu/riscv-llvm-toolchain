@@ -13,12 +13,16 @@
 **TODO/Status/Ask For Help:**
 * **libcxx/libcxxabi/libunwind** cross compile.
 
+I can't build *libcxx/libcxxabi* successfully with essential components,
+if you are a C++ expert and glad to help, contact me please, I can shift this
+project to you, and explain every single line to you.
+
 ## Prerequisites
 ### Ubuntu
 
 On Ubuntu, executing the following command should suffice:
 
-`sudo apt-get install automake curl wget python3 libmpc-dev gawk build-essential bison flex texinfo gperf pkg-config libtool patchutils bc zlib1g-dev libexpat-dev ninja-build`
+`sudo apt-get install zsh automake curl wget python3 libmpc-dev gawk build-essential bison flex texinfo gperf pkg-config libtool patchutils bc zlib1g-dev libexpat-dev ninja-build`
 
 
 ### macOS
@@ -48,16 +52,12 @@ set_custom_env() {
 Then, we can run it by
 
 ```
-bash rv64.sh
-```
-
-If the *bash script* failed, try *zsh script*.  Every single step is right,
-but it seem lead a wrong path sometimes.
-
-```
 zsh rv64-zsh.sh
 ```
 
+For the *bash script* always failed, so I recommand the *zsh script*.
+Every single step is right, but the *bash script* always lead a wrong path.
+If you don't have `zsh`, maybe you can run bash command step by step.
 
 ### Re-build
 If you can re-build it, remove the **$PROJ_ROOT/build/$XXX** directory.
@@ -76,15 +76,12 @@ If you wanna download the sources by yourself, the tree should looks like:
 │   ├── qemu
 │   ├── runtimes-musl
 │   └── runtimes-newlib
-├── patch
-│   └── newlib-4.2.0.20211231-C99-build.diff
 ├── rv64.sh
 ├── src
 │   ├── linux-headers
 │   ├── llvm-project
 │   ├── musl-1.2.3
 │   ├── newlib-4.2.0.20211231
-│   ├── newlib_patched
 │   └── qemu-7.1.0
 └── tarball
     ├── linux-headers.tar.bz2
