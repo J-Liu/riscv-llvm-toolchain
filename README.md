@@ -8,13 +8,10 @@
 * compiler-rt
 * Newlib
 * Musl-libc
-* libcxx/libcxxabi/libunwind(partly, ask for help)
 * QEMU
 
 **TODO/Status/Ask For Help:**
-* **libcxx/libcxxabi/libunwind** against **newlib** cross build need to be done.
-* **libcxx/libcxxabi/libunwind** against **musl** have been built without `locale`,
-  we DO need `locale` to use `<iostream>`.
+* **libcxx/libcxxabi/libunwind** cross compile.
 
 ## Prerequisites
 ### Ubuntu
@@ -31,7 +28,7 @@ Install [***homebrew***](https://brew.sh) first, and then executing the followin
 
 ```
 brew install cmake ninja python libtool pkg-config glib zlib
-```      
+```
 
 
 ## Usage
@@ -121,7 +118,7 @@ It is my first time to write bash, for I know almost nothing about coding,
 if you're good at **meson**, please help.  This kind of task is better to be
 done by build system.
 
-And, BTW. Chinese is OK to me if you are Chinese, for I know over 2000 Chinese 
+And, BTW. Chinese is OK to me if you are Chinese, for I know over 2000 Chinese
 characters than 20 English letters.
 
 I don't use Windows, if you wanna ship a toolchian to Win users,

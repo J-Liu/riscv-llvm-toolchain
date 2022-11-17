@@ -566,14 +566,14 @@ if [[ ${WITH_MUSL} == "ON" ]] {
   process_musl_header
   process_compiler_rt_musl
   process_musl
-  process_runtimes_musl
+  # process_runtimes_musl
 }
 
 if [[ ${WITH_NEWLIB} == "ON" ]] {
   post_process_clang_newlib
   process_newlib
   process_compiler_rt_newlib
-  process_runtimes_newlib
+  # process_runtimes_newlib
 }
 
 if [[ ${WITH_QEMU} == "ON" ]] {

@@ -589,7 +589,7 @@ then
   process_musl_header
   process_compiler_rt_musl
   process_musl
-  process_runtimes_musl
+  # process_runtimes_musl
 fi
 
 if [ ${WITH_NEWLIB} == "ON" ]
