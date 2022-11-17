@@ -264,7 +264,7 @@ process_picolibc () {
   meson \
   -Dincludedir=include \
   -Dlibdir=lib \
-  --prefix ${CLANG_PREFIX} \
+  --prefix ${NEWLIB_SYSROOT} \
   --cross-file meson-cross-build.txt \
   ${SRC_PICOLIBC}
   ninja
