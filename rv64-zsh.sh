@@ -257,7 +257,7 @@ process_newlib () {
     mkdir -p ${BUILD_NEWLIB}
   }
   cd ${BUILD_NEWLIB}
-  export CFLAGS_FOR_TARGET=" -Wno-int-conversion -g -gdwarf-3 -gstrict-dwarf -O2 -ffunction-sections -fdata-sections "
+  export CFLAGS_FOR_TARGET=" -Wno-error=implicit-function-declaration -Wno-int-conversion -g -gdwarf-3 -gstrict-dwarf -O2 -ffunction-sections -fdata-sections "
   export CC_FOR_TARGET=${CLANG_BIN}/${NEWLIB_TRIPLE}-clang
   export AS_FOR_TARGET=${CLANG_BIN}/${NEWLIB_TRIPLE}-clang
   export LD_FOR_TARGET=${CLANG_BIN}/lld
