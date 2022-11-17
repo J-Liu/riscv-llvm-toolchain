@@ -109,7 +109,6 @@ $PREFIX/bin/qemu-riscv64 -L $PREFIX/sysroot -cpu rv64 a.out
 * cross compile libunwind/libcxx/libcxxabi.
 * MinGW cross compile.
 * glibc toolchain.
-* Anyone please summit a C99 build patch to newlib?  I'm tired with mailinglist.
 
 It is my first time to write bash, for I know almost nothing about coding,
 if you're good at **meson**, please help.  This kind of task is better to be
