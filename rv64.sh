@@ -55,7 +55,6 @@ set_env() {
   export QEMU_VER="7.1.0"
 
   export SUFFIX_XZ="tar.xz"
-  export SUFFIX_BZ="tar.bz2"
   export SUFFIX_GZ="tar.gz"
 
   export NEWLIB_TARBALL=newlib-${NEWLIB_VER}.${SUFFIX_GZ}
@@ -74,12 +73,6 @@ set_env() {
   export NEWLIB_PATCH=${PATCH_ROOT}/${NEWLIB_C99_PATCH}
 
   export NEWLIB_PATCH_FLAG=${SRC_ROOT}/newlib_patched
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
-  export LINUX_HEADER_FLAG=${BUILD_ROOT}/linux_header_installed
-  export MUSL_HEADER_FLAG=${BUILD_ROOT}/musl_header_installed
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
 
   export LLVM_PROJ_ROOT=${SRC_ROOT}/llvm-project
   export SRC_LLVM=${LLVM_PROJ_ROOT}/llvm
@@ -96,7 +89,6 @@ set_env() {
   export BUILD_COMPILER_RT_NEWLIB=${BUILD_ROOT}/compiler-rt-newlib
   export BUILD_COMPILER_RT_MUSL=${BUILD_ROOT}/compiler-rt-musl
   export BUILD_MUSL=${BUILD_ROOT}/musl
-  export BUILD_NEWLIB=${BUILD_ROOT}/newlib
   export BUILD_RUNTIMES_NEWLIB=${BUILD_ROOT}/runtimes-newlib
   export BUILD_RUNTIMES_MUSL=${BUILD_ROOT}/runtimes-musl
   export BUILD_QEMU=${BUILD_ROOT}/qemu
@@ -160,21 +152,21 @@ unpack() {
   then
     echo -e "I: ${SRC_MUSL} already exist"
   else
-    tar vxf ${TARBALL_ROOT}/${MUSL_TARBALL}
+    tar xf ${TARBALL_ROOT}/${MUSL_TARBALL}
   fi
 
   if [ -d ${SRC_NEWLIB} ]
   then
     echo -e "I: ${SRC_NEWLIB} already exist"
   else
-    tar vxf ${TARBALL_ROOT}/${NEWLIB_TARBALL}
+    tar xf ${TARBALL_ROOT}/${NEWLIB_TARBALL}
   fi
 
   if [ -d ${SRC_QEMU} ]
   then
     echo -e "I: ${SRC_QEMU} already exist"
   else
-    tar vxf ${TARBALL_ROOT}/${QEMU_TARBALL}
+    tar xf ${TARBALL_ROOT}/${QEMU_TARBALL}
   fi
 }
 
