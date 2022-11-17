@@ -4,7 +4,7 @@ set_custom_env() {
   export CLANG_PREFIX=<PREFIX>
   export BUILD_TYPE=Release
   export WITH_MUSL=ON
-  export WITH_NEWLIB=ON
+  export WITH_PICOLIBC=ON
   export WITH_QEMU=ON
 }
 
@@ -48,36 +48,31 @@ set_env() {
   export CROSS_MUSL_FLAGS="${MUSL_FLAGS} ${GNU_C89_FLAG}"
   export CROSS_NEWLIB_FLAGS="${NEWLIB_FLAGS} ${GNU_C89_FLAG}"
 
-  export NEWLIB_VER="4.2.0.20211231"
   export MUSL_VER="1.2.3"
   export QEMU_VER="7.1.0"
 
   export SUFFIX_XZ="tar.xz"
-  export SUFFIX_BZ="tar.bz2"
   export SUFFIX_GZ="tar.gz"
 
-  export NEWLIB_TARBALL=newlib-${NEWLIB_VER}.${SUFFIX_GZ}
   export MUSL_TARBALL=musl-${MUSL_VER}.${SUFFIX_GZ}
   export QEMU_TARBALL=qemu-${QEMU_VER}.${SUFFIX_XZ}
 
   export MUSL_SITE="https://musl.libc.org/releases/"
   export MUSL_URL=${MUSL_SITE}${MUSL_TARBALL}
-  export NEWLIB_SITE="http://sourceware.org/pub/newlib/"
-  export NEWLIB_URL=${NEWLIB_SITE}${NEWLIB_TARBALL}
   export QEMU_SITE="https://download.qemu.org/"
   export QEMU_URL=${QEMU_SITE}${QEMU_TARBALL}
   export LLVM_GIT_URL="https://github.com/llvm/llvm-project.git"
+  export PICOLIBC_GIT_URL="https://github.com/picolibc/picolibc.git"
 
-  export NEWLIB_C99_PATCH=newlib-4.2.0.20211231-C99-build.diff
-  export NEWLIB_PATCH=${PATCH_ROOT}/${NEWLIB_C99_PATCH}
+  export LIBCXX_MATH_PATCH=llvm-HEAD.patch
+  export LIBCXX_PATCH=${PATCH_ROOT}/${LIBCXX_MATH_PATCH}
+  export PICOLIBC_MATH_PATCH=picolibc-HEAD.patch
+  export PICOLIBC_PATCH=${PATCH_ROOT}/${PICOLIBC_MATH_PATCH}
 
-  export NEWLIB_PATCH_FLAG=${SRC_ROOT}/newlib_patched
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
-  export LINUX_HEADER_FLAG=${BUILD_ROOT}/linux_header_installed
-  export MUSL_HEADER_FLAG=${BUILD_ROOT}/musl_header_installed
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
-  export CLANG_FLAG=${BUILD_ROOT}/clang_built
+  export LIBCXX_PATCH_FLAG=${SRC_ROOT}/libcxx_patched
+  export PICOLIBC_PATCH_FLAG=${SRC_ROOT}/picolibc_patched
+
+  export MESON_CROSS_BUILD=${RES_ROOT}/meson-cross-build.txt
 
   export LLVM_PROJ_ROOT=${SRC_ROOT}/llvm-project
   export SRC_LLVM=${LLVM_PROJ_ROOT}/llvm
@@ -85,16 +80,15 @@ set_env() {
   export SRC_RUNTIMES=${LLVM_PROJ_ROOT}/runtimes
   export SRC_LINUX_HEADER=${SRC_ROOT}/linux-headers
   export SRC_MUSL=${SRC_ROOT}/musl-${MUSL_VER}
-  export SRC_NEWLIB=${SRC_ROOT}/newlib-${NEWLIB_VER}
+  export SRC_PICOLIBC=${SRC_ROOT}/picolibc
   export SRC_QEMU=${SRC_ROOT}/qemu-${QEMU_VER}
 
   export BUILD_CLANG=${BUILD_ROOT}/clang
   export BUILD_MUSL_HEADER=${BUILD_ROOT}/musl-header
-  export BUILD_NEWLIB=${BUILD_ROOT}/newlib
+  export BUILD_PICOLIBC=${BUILD_ROOT}/picolibc
   export BUILD_COMPILER_RT_NEWLIB=${BUILD_ROOT}/compiler-rt-newlib
   export BUILD_COMPILER_RT_MUSL=${BUILD_ROOT}/compiler-rt-musl
   export BUILD_MUSL=${BUILD_ROOT}/musl
-  export BUILD_NEWLIB=${BUILD_ROOT}/newlib
   export BUILD_RUNTIMES_NEWLIB=${BUILD_ROOT}/runtimes-newlib
   export BUILD_RUNTIMES_MUSL=${BUILD_ROOT}/runtimes-musl
   export BUILD_QEMU=${BUILD_ROOT}/qemu
@@ -122,12 +116,6 @@ download() {
     curl -O ${MUSL_URL}
   }
 
-  if [[ -f ${NEWLIB_TARBALL} ]] {
-    echo -e "I: ${NEWLIB_TARBALL} already downloaded"
-  } else {
-    curl -O ${NEWLIB_URL}
-  }
-
   if [[ -f ${QEMU_TARBALL} ]] {
     echo -e "I: ${QEMU_TARBALL} already downloaded"
   } else {
@@ -140,6 +128,13 @@ download() {
     cd ${SRC_ROOT}
     git clone ${LLVM_GIT_URL}
   }
+
+  if [[ -e ${SRC_PICOLIBC} ]] {
+    echo -e "I: ${SRC_PICOLIBC} already downloaded"
+  } else {
+    cd ${SRC_ROOT}
+    git clone ${PICOLIBC_GIT_URL}
+  }
 }
 
 unpack() {
@@ -150,12 +145,6 @@ unpack() {
     tar vxf ${TARBALL_ROOT}/${MUSL_TARBALL}
   }
 
-  if [[ -d ${SRC_NEWLIB} ]] {
-    echo -e "I: ${SRC_NEWLIB} already exist"
-  } else {
-    tar vxf ${TARBALL_ROOT}/${NEWLIB_TARBALL}
-  }
-
   if [[ -d ${SRC_QEMU} ]] {
     echo -e "I: ${SRC_QEMU} already exist"
   } else {
@@ -164,12 +153,20 @@ unpack() {
 }
 
 patch_src() {
-  if [[ -e ${NEWLIB_PATCH_FLAG} ]] {
-    echo -e "I: ${SRC_NEWLIB} already patched"
+  if [[ -e ${LIBCXX_PATCH_FLAG} ]] {
+    echo -e "I: libcxx already patched"
   } else {
-    cd ${SRC_NEWLIB}
-    patch -p1 < ${NEWLIB_PATCH}
-    touch ${NEWLIB_PATCH_FLAG}
+    cd ${LLVM_PROJ_ROOT}
+    patch -p1 < ${LIBCXX_PATCH}
+    touch ${LIBCXX_PATCH_FLAG}
+  }
+
+  if [[ -e ${PICOLIBC_PATCH_FLAG} ]] {
+    echo -e "I: ${SRC_PICOLIBC} already patched"
+  } else {
+    cd ${SRC_PICOLIBC}
+    patch -p1 < ${PICOLIBC_PATCH}
+    touch ${PICOLIBC_PATCH_FLAG}
   }
 }
 
@@ -256,38 +253,22 @@ process_musl_header() {
   make install-headers
 }
 
-process_newlib () {
-  if [[ -d ${BUILD_NEWLIB} ]] {
-    echo -e "I: ${BUILD_NEWLIB} already exist"
+process_picolibc () {
+  if [[ -d ${BUILD_PICOLIBC} ]] {
+    echo -e "I: ${BUILD_PICOLIBC} already exist"
   } else {
-    mkdir -p ${BUILD_NEWLIB}
+    mkdir -p ${BUILD_PICOLIBC}
   }
-  cd ${BUILD_NEWLIB}
-  export CFLAGS_FOR_TARGET=" -Wno-int-conversion -g -gdwarf-3 -gstrict-dwarf -O2 -ffunction-sections -fdata-sections "
-  export CC_FOR_TARGET=${NEWLIB_TRIPLE}-clang
-  export AS_FOR_TARGET=${NEWLIB_TRIPLE}-clang
-  export LD_FOR_TARGET=lld
-  export CXX_FOR_TARGET=${NEWLIB_TRIPLE}-clang++
-  export AR_FOR_TARGET=llvm-ar
-  export NM_FOR_TARGET=llvm-nm
-  export RANLIB_FOR_TARGET=llvm-ranlib
-  export OBJCOPY_FOR_TARGET=llvm-objcopy
-  export OBJDUMP_FOR_TARGET=llvm-objdump
-  export READELF_FOR_TARGET=llvm-readelf
-  export STRIP_FOR_TARGET=llvm-strip
-  export LIPO_FOR_TARGET=llvm-lipo
-  export DLLTOOL_FOR_TARGET=llvm-dlltool
-  $SRC_NEWLIB/configure \
-  --prefix=${CLANG_PREFIX} \
-  --target=${NEWLIB_TRIPLE} \
-  --enable-newlib-io-long-double \
-  --enable-newlib-io-long-long \
-  --enable-newlib-io-c99-formats \
-  --enable-newlib-register-fini \
-  --disable-multilib \
-  --disable-nls
-  make ${JOBS} all
-  make install
+  cd ${BUILD_PICOLIBC}
+  cp ${MESON_CROSS_BUILD} .
+  meson \
+  -Dincludedir=include \
+  -Dlibdir=lib \
+  --prefix ${CLANG_PREFIX} \
+  --cross-file meson-cross-build.txt \
+  ${SRC_PICOLIBC}
+  ninja
+  ninja install
 }
 
 set_compiler_rt_prefix() {
@@ -575,9 +556,9 @@ if [[ ${WITH_MUSL} == "ON" ]] {
   process_runtimes_musl
 }
 
-if [[ ${WITH_NEWLIB} == "ON" ]] {
+if [[ ${WITH_PICOLIBC} == "ON" ]] {
   post_process_clang_newlib
-  process_newlib
+  process_picolibc
   process_compiler_rt_newlib
 #  process_runtimes_newlib
 }
