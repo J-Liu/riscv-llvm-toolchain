@@ -275,19 +275,19 @@ process_newlib () {
   fi
   cd ${BUILD_NEWLIB}
   export CFLAGS_FOR_TARGET=" -Wno-error=implicit-function-declaration -Wno-int-conversion -g -gdwarf-3 -gstrict-dwarf -O2 -ffunction-sections -fdata-sections "
-  export CC_FOR_TARGET=${NEWLIB_TRIPLE}-clang
-  export AS_FOR_TARGET=${NEWLIB_TRIPLE}-clang
-  export LD_FOR_TARGET=lld
-  export CXX_FOR_TARGET=${NEWLIB_TRIPLE}-clang++
-  export AR_FOR_TARGET=llvm-ar
-  export NM_FOR_TARGET=llvm-nm
-  export RANLIB_FOR_TARGET=llvm-ranlib
-  export OBJCOPY_FOR_TARGET=llvm-objcopy
-  export OBJDUMP_FOR_TARGET=llvm-objdump
-  export READELF_FOR_TARGET=llvm-readelf
-  export STRIP_FOR_TARGET=llvm-strip
-  export LIPO_FOR_TARGET=llvm-lipo
-  export DLLTOOL_FOR_TARGET=llvm-dlltool
+  export CC_FOR_TARGET=${CLANG_BIN}/${NEWLIB_TRIPLE}-clang
+  export AS_FOR_TARGET=${CLANG_BIN}/${NEWLIB_TRIPLE}-clang
+  export LD_FOR_TARGET=${CLANG_BIN}/lld
+  export CXX_FOR_TARGET=${CLANG_BIN}/${NEWLIB_TRIPLE}-clang++
+  export AR_FOR_TARGET=${CLANG_BIN}/llvm-ar
+  export NM_FOR_TARGET=${CLANG_BIN}/llvm-nm
+  export RANLIB_FOR_TARGET=${CLANG_BIN}/llvm-ranlib
+  export OBJCOPY_FOR_TARGET=${CLANG_BIN}/llvm-objcopy
+  export OBJDUMP_FOR_TARGET=${CLANG_BIN}/llvm-objdump
+  export READELF_FOR_TARGET=${CLANG_BIN}/llvm-readelf
+  export STRIP_FOR_TARGET=${CLANG_BIN}/llvm-strip
+  export LIPO_FOR_TARGET=${CLANG_BIN}/llvm-lipo
+  export DLLTOOL_FOR_TARGET=${CLANG_BIN}/llvm-dlltool
   $SRC_NEWLIB/configure \
   --prefix=${CLANG_PREFIX} \
   --target=${NEWLIB_TRIPLE} \
