@@ -13,7 +13,6 @@ set_env() {
   export JOBS="-j32"
   export SRC_ROOT=${TOP}/src
   export BUILD_ROOT=${TOP}/build
-  export PATCH_ROOT=${TOP}/patch
   export TARBALL_ROOT=${TOP}/tarball
 
   export CLANG_BIN=${CLANG_PREFIX}/bin
@@ -65,14 +64,6 @@ set_env() {
   export QEMU_SITE="https://download.qemu.org/"
   export QEMU_URL=${QEMU_SITE}${QEMU_TARBALL}
   export LLVM_GIT_URL="https://github.com/llvm/llvm-project.git"
-
-  export LIBCXX_MATH_PATCH=llvm-HEAD.patch
-  export LIBCXX_PATCH=${PATCH_ROOT}/${LIBCXX_MATH_PATCH}
-  export NEWLIB_C99_PATCH=newlib-4.2.0.20211231-C99-build.diff
-  export NEWLIB_PATCH=${PATCH_ROOT}/${NEWLIB_C99_PATCH}
-
-  export LIBCXX_PATCH_FLAG=${SRC_ROOT}/libcxx_patched
-  export NEWLIB_PATCH_FLAG=${SRC_ROOT}/newlib_patched
 
   export LLVM_PROJ_ROOT=${SRC_ROOT}/llvm-project
   export SRC_LLVM=${LLVM_PROJ_ROOT}/llvm

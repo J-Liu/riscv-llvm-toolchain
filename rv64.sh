@@ -13,8 +13,6 @@ set_env() {
   export JOBS="-j32"
   export SRC_ROOT=${TOP}/src
   export BUILD_ROOT=${TOP}/build
-  export PATCH_ROOT=${TOP}/patch
-  export RES_ROOT=${TOP}/resource
   export TARBALL_ROOT=${TOP}/tarball
 
   export CLANG_BIN=${CLANG_PREFIX}/bin
@@ -68,11 +66,6 @@ set_env() {
   export QEMU_SITE="https://download.qemu.org/"
   export QEMU_URL=${QEMU_SITE}${QEMU_TARBALL}
   export LLVM_GIT_URL="https://github.com/llvm/llvm-project.git"
-
-  export NEWLIB_C99_PATCH=newlib-4.2.0.20211231-C99-build.diff
-  export NEWLIB_PATCH=${PATCH_ROOT}/${NEWLIB_C99_PATCH}
-
-  export NEWLIB_PATCH_FLAG=${SRC_ROOT}/newlib_patched
 
   export LLVM_PROJ_ROOT=${SRC_ROOT}/llvm-project
   export SRC_LLVM=${LLVM_PROJ_ROOT}/llvm
@@ -546,16 +539,15 @@ process_runtimes_newlib() {
   -DLIBCXX_ENABLE_RTTI=OFF \
   -DLIBCXX_ENABLE_THREADS=OFF \
   -DLIBCXX_ENABLE_WIDE_CHARACTERS=ON \
-  -DLIBCXX_ENABLE_LOCALIZATION=OFF \
-  -DLIBCXX_EXTRA_SITE_DEFINES=_LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION \
+  -DLIBCXX_EXTRA_SITE_DEFINES=_LIBCPP_PROVIDES_DEFAULT_RUNE_TABLE \
   -DLIBUNWIND_ENABLE_THREADS=OFF \
   ${SRC_RUNTIMES}
   ninja cxx
-#  ninja cxxabi
-#  ninja unwind
-#  ninja install-cxx
-#  ninja install-cxxabi
-#  ninja install-unwind
+  ninja cxxabi
+  ninja unwind
+  ninja install-cxx
+  ninja install-cxxabi
+  ninja install-unwind
 }
 
 process_qemu() {
