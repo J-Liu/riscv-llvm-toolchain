@@ -578,7 +578,7 @@ set_env
 makedir
 download
 unpack
-patch_src
+#patch_src
 
 process_clang
 
